@@ -34,7 +34,7 @@ import SuiButton from "components/SuiButton";
 
 // Soft UI Dashboard React examples
 import SidenavCollapse from "examples/Sidenav/SidenavCollapse";
-import SidenavCard from "examples/Sidenav/SidenavCard";
+// import SidenavCard from "examples/Sidenav/SidenavCard";
 
 // Custom styles for the Sidenav
 import SidenavRoot from "examples/Sidenav/SidenavRoot";
@@ -158,7 +158,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       <Divider />
       <List>{renderRoutes}</List>
       <SuiBox pt={2} my={2} mx={2} mt="auto">
-        <SidenavCard />
+        {/* <SidenavCard /> */}
         <SuiBox mt={2}>
           <SuiButton
             component="a"
