@@ -12,6 +12,7 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
+/* eslint-disable */
 
 import { useState } from "react";
 
@@ -20,7 +21,6 @@ import { Link } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
-import Checkbox from "@mui/material/Checkbox";
 
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
@@ -30,81 +30,98 @@ import SuiButton from "components/SuiButton";
 
 // Authentication layout components
 import BasicLayout from "layouts/authentication/components/BasicLayout";
-import Socials from "layouts/authentication/components/Socials";
-import Separator from "layouts/authentication/components/Separator";
 
 // Images
 import curved6 from "assets/images/curved-images/curved14.jpg";
 
 function SignUp() {
-  const [agreement, setAgremment] = useState(true);
 
-  const handleSetAgremment = () => setAgremment(!agreement);
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [phoneNumber, setPhoneNumber] = useState("");
+	const [email, setEmail] = useState("");
 
-  return (
-    <BasicLayout
-      title="Welcome!"
-      description="Use these awesome forms to login or create new account in your project for free."
-      image={curved6}
-    >
-      <Card>
-        <SuiBox p={3} mb={1} textAlign="center">
-          <SuiTypography variant="h5" fontWeight="medium">
-            Register with
-          </SuiTypography>
-        </SuiBox>
-        <SuiBox mb={2}>
-          <Socials />
-        </SuiBox>
-        <Separator />
+	// run checks in here
+	function handleSetUsername(event){
+		setUsername(event.target.value);
+	}
+	function handleSetPassword(event){
+		setPassword(event.target.value);
+	}
+	function handleSetFirstName(event){
+		setFirstName(event.target.value);
+	}
+	function handleSetLastName(event){
+		setLastName(event.target.value);
+	}
+	function handleSetPhoneNumber(event){
+		setPhoneNumber(event.target.value);
+	}
+	function handleSetEmail(event){
+		setEmail(event.target.value);
+	}
+
+	function submitForm(){
+		
+	}
+
+  	return (
+		<BasicLayout
+			title="Welcome!"
+			description="Create an account to enjoy all the features our service provides"
+			image={curved6}
+		>
+      	<Card>
+			<SuiBox p={3} mb={1} textAlign="center">
+				<SuiTypography variant="h5" fontWeight="medium">
+					Register
+				</SuiTypography>
+			</SuiBox>
         <SuiBox pt={2} pb={3} px={3}>
-          <SuiBox component="form" role="form">
-            <SuiBox mb={2}>
-              <SuiInput placeholder="Name" />
-            </SuiBox>
-            <SuiBox mb={2}>
-              <SuiInput type="email" placeholder="Email" />
-            </SuiBox>
-            <SuiBox mb={2}>
-              <SuiInput type="password" placeholder="Password" />
-            </SuiBox>
-            <SuiBox display="flex" alignItems="center">
-              <Checkbox checked={agreement} onChange={handleSetAgremment} />
-              <SuiTypography
-                variant="button"
-                fontWeight="regular"
-                onClick={handleSetAgremment}
-                sx={{ cursor: "poiner", userSelect: "none" }}
-              >
-                &nbsp;&nbsp;I agree the&nbsp;
-              </SuiTypography>
-              <SuiTypography component="a" href="#" variant="button" fontWeight="bold" textGradient>
-                Terms and Conditions
-              </SuiTypography>
-            </SuiBox>
-            <SuiBox mt={4} mb={1}>
-              <SuiButton variant="gradient" color="dark" fullWidth>
-                sign up
-              </SuiButton>
-            </SuiBox>
-            <SuiBox mt={3} textAlign="center">
-              <SuiTypography variant="button" color="text" fontWeight="regular">
-                Already have an account?&nbsp;
-                <SuiTypography
-                  component={Link}
-                  to="/authentication/sign-in"
-                  variant="button"
-                  color="dark"
-                  fontWeight="bold"
-                  textGradient
-                >
-                  Sign in
-                </SuiTypography>
-              </SuiTypography>
-            </SuiBox>
-          </SuiBox>
-        </SuiBox>
-      </Card>
+			<SuiBox component="form" role="form">
+				<SuiBox mb={2}>
+					<SuiInput placeholder="Username" value={username} onChange={handleSetUsername}/>
+				</SuiBox>
+				<SuiBox mb={2}>
+					<SuiInput type="password" placeholder="Password" value={password} onChange={handleSetPassword}/>
+				</SuiBox>
+				<SuiBox mb={2}>
+					<SuiInput type="text" placeholder="First Name" value={firstName} onChange={handleSetFirstName}/>
+				</SuiBox>
+				<SuiBox mb={2}>
+					<SuiInput type="text" placeholder="Last Name" value={lastName} onChange={handleSetLastName}/>
+				</SuiBox>
+				<SuiBox mb={2}>
+					<SuiInput type="text" placeholder="Phone Number" value={phoneNumber} onChange={handleSetPhoneNumber}/>
+				</SuiBox>
+				<SuiBox mb={2}>
+					<SuiInput type="email" placeholder="Email" value={email} onChange={handleSetEmail}/>
+				</SuiBox>
+				<SuiBox mt={4} mb={1}>
+					<SuiButton variant="gradient" color="dark" fullWidth onClick={submitForm}>
+						sign up
+					</SuiButton>
+				</SuiBox>
+					<SuiBox mt={3} textAlign="center">
+						<SuiTypography variant="button" color="text" fontWeight="regular">
+								Already have an account?&nbsp;
+								<SuiTypography
+									component={Link}
+									to="/authentication/sign-in"
+									variant="button"
+									color="dark"
+									fontWeight="bold"
+									textGradient
+									>
+									Sign in
+								</SuiTypography>
+						</SuiTypography>
+					</SuiBox>
+          		</SuiBox>
+        	</SuiBox>
+      	</Card>
     </BasicLayout>
   );
 }
