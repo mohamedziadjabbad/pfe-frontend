@@ -1,0 +1,2 @@
+- roles and permissions in signup?
+- how to interact with swagger, 401 and "Full authentication is required to access this resource" message

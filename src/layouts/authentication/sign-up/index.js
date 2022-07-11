@@ -19,6 +19,9 @@ import { useState } from "react";
 // react-router-dom components
 import { Link } from "react-router-dom";
 
+import { HTTPpost } from "usables/EasyHTTP";
+import ENVIRONMENT_VARIABLES from "usables/ENVIRONMENT_VARIABLES.json";
+
 // @mui material components
 import Card from "@mui/material/Card";
 
@@ -63,8 +66,18 @@ function SignUp() {
 		setEmail(event.target.value);
 	}
 
-	function submitForm(){
-		
+	function handleSubmit(){
+        HTTPpost(`${ENVIRONMENT_VARIABLES}/api/users`,
+        {
+            "username": username,
+            "password": password,
+            "firstname": firstName,
+            "lastname": lastName,
+            "phone": phoneNumber,
+            "email": email,
+            "enable": true,
+            "roles": []
+        })
 	}
 
   	return (
@@ -100,7 +113,7 @@ function SignUp() {
 					<SuiInput type="email" placeholder="Email" value={email} onChange={handleSetEmail}/>
 				</SuiBox>
 				<SuiBox mt={4} mb={1}>
-					<SuiButton variant="gradient" color="dark" fullWidth onClick={submitForm}>
+					<SuiButton variant="gradient" color="dark" fullWidth onClick={handleSubmit}>
 						sign up
 					</SuiButton>
 				</SuiBox>
