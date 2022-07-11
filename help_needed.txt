@@ -1,2 +1,41 @@
-- roles and permissions in signup?
-- how to interact with swagger, 401 and "Full authentication is required to access this resource" message
+- how to interact with the server from front end.
+- do I have to connect to superAdmin in every session?
+- Error 500 creating a new user:
+    {
+        "username": "username1",
+        "password": "password1",
+        "firstname": "first name 1",
+        "lastname": "last name 1",
+        "phone": "0600000000",
+        "email": "test@email",
+        "enable": true,
+        "roles": [
+            "id": 3,
+            "name": "MEMBRE",
+            "permissions": [
+                {
+                    {
+                        "id": 4,
+                        "name": "SHOW_PROJECT"
+                    },
+                    {
+                        "id": 9,
+                        "name": "SHOW_TASK"
+                    },
+                    {
+                        "id": 10,
+                        "name": "ACTION_TASK"
+                    },
+                    {
+                        "id": 29,
+                        "name": "SHOW_STATUS"
+                    },
+                    {
+                        "id": 5,
+                        "name": "ACTION_PROJECT"
+                    }
+                }
+            ]
+    }
+
+- session in backend or at least user by ID endpoint
