@@ -46,7 +46,7 @@ function Footer({ company, links }) {
   return (
     <SuiBox
       width="100%"
-      display="flex"
+      display="none"
       flexDirection={{ xs: "column", lg: "row" }}
       justifyContent="space-between"
       alignItems="center"

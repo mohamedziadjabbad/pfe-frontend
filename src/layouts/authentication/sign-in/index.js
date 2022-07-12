@@ -40,8 +40,10 @@ import curved9 from "assets/images/curved-images/curved-6.jpg";
 
 function SignIn() {
 
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const [error, setError] = useState('');
 
     function handleUsernameChange(event){
         setUsername(event.target.value);
@@ -57,16 +59,23 @@ function SignIn() {
                 "username": username,
                 "password": password
             }).then(data => {
-                console.log(data);   
+                console.log(data);
+                if("id" in data) {
+                    // connected
+                    ENVIRONMENT_VARIABLES.session = data.id;
+                } else {
+                    setError(data.message)
+                }
             })
     }
 
     return (
         <CoverLayout
         title="Welcome back"
-        description="Enter your email and password to sign in"
+        // description="Enter your username and password to sign in"
         image={curved9}
         >
+        { error && <p style={{color:"red"}}>{error}</p>}
         <SuiBox component="form" role="form">
             <SuiBox mb={2}>
             <SuiBox mb={1} ml={0.5}>
@@ -89,21 +98,6 @@ function SignIn() {
             <SuiButton variant="gradient" color="info" fullWidth onClick={handleSubmit}>
                 sign in
             </SuiButton>
-            </SuiBox>
-            <SuiBox mt={3} textAlign="center">
-            <SuiTypography variant="button" color="text" fontWeight="regular">
-                Don&apos;t have an account?{" "}
-                <SuiTypography
-                component={Link}
-                to="/authentication/sign-up"
-                variant="button"
-                color="info"
-                fontWeight="medium"
-                textGradient
-                >
-                Sign up
-                </SuiTypography>
-            </SuiTypography>
             </SuiBox>
         </SuiBox>
         </CoverLayout>

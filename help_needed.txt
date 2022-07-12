@@ -38,4 +38,8 @@
             ]
     }
 
-- session in backend or at least user by ID endpoint
+- session in backend 
+or 
+- user by ID endpoint
+
+- statusCode in successful connection
