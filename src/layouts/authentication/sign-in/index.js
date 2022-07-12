@@ -15,6 +15,7 @@ Coded by www.creative-tim.com
 /* eslint-disable */
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // react-router-dom components
 import { Link } from "react-router-dom";
@@ -45,6 +46,8 @@ function SignIn() {
 
     const [error, setError] = useState('');
 
+    const navigate = useNavigate();
+
     function handleUsernameChange(event){
         setUsername(event.target.value);
     }
@@ -62,7 +65,8 @@ function SignIn() {
                 console.log(data);
                 if("id" in data) {
                     // connected
-                    ENVIRONMENT_VARIABLES.session = data.id;
+                    ENVIRONMENT_VARIABLES.session = data;
+                    navigate('/profile')
                 } else {
                     setError(data.message)
                 }
