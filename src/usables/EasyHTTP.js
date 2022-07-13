@@ -1,10 +1,11 @@
 /* eslint-disable */
 // Make an HTTP GET Request 
-export const HTTPget = async (url) => {
+export const HTTPget = async (url, token = null) => {
   
     // Awaiting for fetch response
     const response = await fetch(url, {
         method: 'GET',
+        headers: {'Authorisation': "Bearer " + token}
     });
 
     // Awaiting for response.json()

@@ -54,9 +54,22 @@ import team4 from "assets/images/team-4.jpg";
 import ENVIRONMENT_VARIABLES from "usables/ENVIRONMENT_VARIABLES.json";
 import { CheckSession } from "usables/checkSession";
 import { useNavigate } from "react-router-dom";
+import { HTTPget } from "usables/EasyHTTP";
+import React from "react";
 
 function Overview() {
     // CheckSession(useNavigate(), ENVIRONMENT_VARIABLES);
+    const [clients, setClients] = React.useState([]);
+
+    // React.useEffect(() => {
+    //     HTTPget(
+    //         `${ENVIRONMENT_VARIABLES.url}/clients`,
+    //         ENVIRONMENT_VARIABLES.session.token
+    //     ).then( data => {
+    //         console.log(data);
+    //     })
+    // })
+
     return (
         <DashboardLayout>
         <Header />
