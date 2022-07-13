@@ -168,7 +168,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                             fontWeight="medium"
                             color={light ? "white" : "dark"}
                         >
-                            Sign in
+                            Sign out
                         </SuiTypography>
                         </IconButton>
                     </Link>

@@ -5,7 +5,8 @@ x remove image
 x change props
 x add date with description style
 x VIEW PROJECT into -> delete project
+x settings -> edit project
+x add new project
 
-- settings -> edit project
 - sign in -> sign out
-- add new project
+- remove settings button

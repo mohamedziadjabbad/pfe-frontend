@@ -82,7 +82,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Sign In",
+    name: "Sign Out",
     key: "sign-in",
     route: "/authentication/sign-in",
     icon: <Document size="12px" />,

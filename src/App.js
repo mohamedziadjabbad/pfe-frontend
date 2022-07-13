@@ -118,20 +118,22 @@ export default function App() {
       alignItems="center"
       width="3.5rem"
       height="3.5rem"
-      bgColor="white"
+      bgColor="dark"
       shadow="sm"
       borderRadius="50%"
+      
       position="fixed"
       right="2rem"
       bottom="2rem"
       zIndex={99}
-      color="dark"
+      color="white"
       sx={{ cursor: "pointer" }}
       onClick={handleConfiguratorOpen}
     >
-      <Icon fontSize="default" color="inherit">
+      {/* <Icon fontSize="default" color="inherit">
         settings
-      </Icon>
+      </Icon> */}
+      +
     </SuiBox>
   );
 
