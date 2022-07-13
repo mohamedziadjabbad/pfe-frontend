@@ -42,9 +42,6 @@ import OrderOverview from "layouts/dashboard/components/OrderOverview";
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData";
 
-import homeDecor1 from "assets/images/home-decor-1.jpg";
-import homeDecor2 from "assets/images/home-decor-2.jpg";
-import homeDecor3 from "assets/images/home-decor-3.jpg";
 import team1 from "assets/images/team-1.jpg";
 import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
@@ -54,11 +51,18 @@ import Card from "@mui/material/Card";
 import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
 import PlaceholderCard from "examples/Cards/PlaceholderCard";
 
+import { useSoftUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
 function Dashboard() {
     const { size } = typography;
     const { chart, items } = reportsBarChartData;
 
+    const [controller, dispatch] = useSoftUIController();
+    const { miniSidenav, direction, layout, openConfigurator, sidenavColor } = controller;
+    const handleToggleSideMenu = () => {
+        setOpenConfigurator(dispatch, !openConfigurator);
+    }
+    
     return (
     <DashboardLayout>
         <DashboardNavbar />
@@ -228,7 +232,7 @@ function Dashboard() {
                             completedTasks="8"
                         />
                     </Grid>
-                    <Grid item xs={12} md={6} xl={3}>
+                    <Grid item xs={12} md={6} xl={3} onClick={handleToggleSideMenu} style={{cursor: 'pointer'}}>
                         <PlaceholderCard title={{ variant: "h5", text: "New project" }} outlined />
                     </Grid>
                 </Grid>

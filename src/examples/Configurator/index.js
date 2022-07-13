@@ -36,6 +36,7 @@ import SuiButton from "components/SuiButton";
 
 // Custom styles for the Configurator
 import ConfiguratorRoot from "examples/Configurator/ConfiguratorRoot";
+import SuiInput from "components/SuiInput";
 
 // Soft UI Dashboard React context
 import {
@@ -87,190 +88,85 @@ function Configurator() {
     },
   });
 
-  return (
-    <ConfiguratorRoot variant="permanent" ownerState={{ openConfigurator }}>
-      <SuiBox
-        display="flex"
-        justifyContent="space-between"
-        alignItems="baseline"
-        pt={3}
-        pb={0.8}
-        px={3}
-      >
-        <SuiBox>
-          <SuiTypography variant="h5">Soft UI Configurator</SuiTypography>
-          <SuiTypography variant="body2" color="text">
-            See our dashboard options.
-          </SuiTypography>
-        </SuiBox>
+return (
+        <ConfiguratorRoot variant="permanent" ownerState={{ openConfigurator }}>
+            <SuiBox
+                display="flex"
+                justifyContent="space-between"
+                alignItems="baseline"
+                pt={3}
+                pb={0.8}
+                px={3}
+            >
+                <SuiBox>
+                    <SuiTypography variant="h5">Create/Edit project</SuiTypography>
+                    <SuiTypography variant="body2" color="text">
+                        Fill the form bellow.
+                    </SuiTypography>
+                </SuiBox>
 
-        <Icon
-          sx={({ typography: { size, fontWeightBold }, palette: { dark } }) => ({
-            fontSize: `${size.md} !important`,
-            fontWeight: `${fontWeightBold} !important`,
-            stroke: dark.main,
-            strokeWidth: "2px",
-            cursor: "pointer",
-            mt: 2,
-          })}
-          onClick={handleCloseConfigurator}
-        >
-          close
-        </Icon>
-      </SuiBox>
-
-      <Divider />
-
-      <SuiBox pt={1.25} pb={3} px={3}>
-        <SuiBox>
-          <SuiTypography variant="h6">Sidenav Colors</SuiTypography>
-
-          <SuiBox mb={0.5}>
-            {sidenavColors.map((color) => (
-              <IconButton
-                key={color}
-                sx={({ borders: { borderWidth }, palette: { white, dark }, transitions }) => ({
-                  width: "24px",
-                  height: "24px",
-                  padding: 0,
-                  border: `${borderWidth[1]} solid ${white.main}`,
-                  borderColor: sidenavColor === color && dark.main,
-                  transition: transitions.create("border-color", {
-                    easing: transitions.easing.sharp,
-                    duration: transitions.duration.shorter,
-                  }),
-                  backgroundImage: ({ functions: { linearGradient }, palette: { gradients } }) =>
-                    linearGradient(gradients[color].main, gradients[color].state),
-
-                  "&:not(:last-child)": {
-                    mr: 1,
-                  },
-
-                  "&:hover, &:focus, &:active": {
-                    borderColor: dark.main,
-                  },
+                <Icon
+                sx={({ typography: { size, fontWeightBold }, palette: { dark } }) => ({
+                    fontSize: `${size.md} !important`,
+                    fontWeight: `${fontWeightBold} !important`,
+                    stroke: dark.main,
+                    strokeWidth: "2px",
+                    cursor: "pointer",
+                    mt: 2,
                 })}
-                onClick={() => setSidenavColor(dispatch, color)}
-              />
-            ))}
-          </SuiBox>
-        </SuiBox>
-
-        <SuiBox mt={3} lineHeight={1}>
-          <SuiTypography variant="h6">Sidenav Type</SuiTypography>
-          <SuiTypography variant="button" color="text" fontWeight="regular">
-            Choose between 2 different sidenav types.
-          </SuiTypography>
-
-          <SuiBox
-            sx={{
-              display: "flex",
-              mt: 2,
-            }}
-          >
-            <SuiButton
-              color="info"
-              variant={transparentSidenav ? "gradient" : "outlined"}
-              onClick={handleTransparentSidenav}
-              disabled={disabled}
-              fullWidth
-              sx={{
-                mr: 1,
-                ...sidenavTypeButtonsStyles,
-              }}
-            >
-              Transparent
-            </SuiButton>
-            <SuiButton
-              color="info"
-              variant={transparentSidenav ? "outlined" : "gradient"}
-              onClick={handleWhiteSidenav}
-              disabled={disabled}
-              fullWidth
-              sx={sidenavTypeButtonsStyles}
-            >
-              White
-            </SuiButton>
-          </SuiBox>
-        </SuiBox>
-        <SuiBox mt={3} mb={2} lineHeight={1}>
-          <SuiTypography variant="h6">Navbar Fixed</SuiTypography>
-
-          <Switch checked={fixedNavbar} onChange={handleFixedNavbar} />
-        </SuiBox>
-
-        <Divider />
-
-        <SuiBox mt={3} mb={2}>
-          <SuiBox mb={2}>
-            <SuiButton
-              component={Link}
-              href="https://www.creative-tim.com/product/soft-ui-dashboard-react"
-              target="_blank"
-              rel="noreferrer"
-              color="dark"
-              variant="gradient"
-              fullWidth
-            >
-              free download
-            </SuiButton>
-          </SuiBox>
-          <SuiButton
-            component={Link}
-            href="https://www.creative-tim.com/learning-lab/react/quick-start/soft-ui-dashboard/"
-            target="_blank"
-            rel="noreferrer"
-            color="dark"
-            variant="outlined"
-            fullWidth
-          >
-            view documentation
-          </SuiButton>
-        </SuiBox>
-        <SuiBox display="flex" justifyContent="center">
-          <GitHubButton
-            href="https://github.com/creativetimofficial/soft-ui-dashboard-react"
-            data-icon="octicon-star"
-            data-size="large"
-            data-show-count="true"
-            aria-label="Star creativetimofficial/soft-ui-dashboard-react on GitHub"
-          >
-            Star
-          </GitHubButton>
-        </SuiBox>
-        <SuiBox mt={3} textAlign="center">
-          <SuiBox mb={0.5}>
-            <SuiTypography variant="h6">Thank you for sharing!</SuiTypography>
-          </SuiBox>
-
-          <SuiBox display="flex" justifyContent="center">
-            <SuiBox mr={1.5}>
-              <SuiButton
-                component={Link}
-                href="//twitter.com/intent/tweet?text=Check%20Soft%20UI%20Dashboard%20React%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23react%23mui&url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-dashboard-react"
-                target="_blank"
-                rel="noreferrer"
-                color="dark"
-              >
-                <TwitterIcon />
-                &nbsp; Tweet
-              </SuiButton>
+                onClick={handleCloseConfigurator}
+                >
+                close
+                </Icon>
             </SuiBox>
-            <SuiButton
-              component={Link}
-              href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/soft-ui-dashboard-react"
-              target="_blank"
-              rel="noreferrer"
-              color="dark"
-            >
-              <FacebookIcon />
-              &nbsp; Share
-            </SuiButton>
-          </SuiBox>
-        </SuiBox>
-      </SuiBox>
-    </ConfiguratorRoot>
-  );
+
+            <Divider />
+
+            <SuiBox pt={1.25} pb={3} px={3}>
+                <SuiBox mt={3} mb={2}>
+                    <SuiInput placeholder="Title..." />
+                </SuiBox>    
+                <SuiBox mt={3} mb={2}>
+                    <SuiInput placeholder="Description..." />
+                </SuiBox>    
+                <SuiBox mt={3} mb={2}>
+                    <SuiInput placeholder="Start date..." />
+                </SuiBox>    
+                <SuiBox mt={3} mb={2}>
+                    <SuiInput placeholder="Expected end date..." />
+                </SuiBox>    
+                <SuiBox mt={3} mb={2}>
+                    <SuiInput placeholder="End date..." />
+                </SuiBox>    
+                <SuiBox mt={3} mb={2}>
+                    <SuiInput placeholder="Client..." />
+                </SuiBox>    
+                <SuiBox mt={3} mb={2}>
+                    <SuiInput placeholder="Title..." />
+                </SuiBox>    
+                <SuiBox mt={3} mb={2}>
+                    <SuiInput placeholder="Total number of tasks..." />
+                </SuiBox>    
+                
+                
+                <Divider />
+
+                <SuiBox mt={3} mb={2}>
+                    <SuiBox mb={2}>
+                        <SuiButton
+                            component={Link}
+                            href=""
+                            color="dark"
+                            variant="gradient"
+                            fullWidth
+                        >
+                        Submit
+                        </SuiButton>
+                    </SuiBox>
+                </SuiBox>
+            </SuiBox>
+        </ConfiguratorRoot>
+    );
 }
 
 export default Configurator;
