@@ -54,6 +54,7 @@ import Card from "@mui/material/Card";
 import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
 import PlaceholderCard from "examples/Cards/PlaceholderCard";
 
+
 function Dashboard() {
     const { size } = typography;
     const { chart, items } = reportsBarChartData;
@@ -205,8 +206,8 @@ function Dashboard() {
                                 { image: team4, name: "Peterson" },
                             ]}
                             client="Random client #2"
-                            numberOfTasks="10"
-                            completedTasks="8"
+                            numberOfTasks="20"
+                            completedTasks="20"
                         />
                     </Grid>
                     <Grid item xs={12} md={6} xl={3}>
@@ -223,7 +224,7 @@ function Dashboard() {
                                 { image: team4, name: "Peterson" },
                             ]}
                             client="Random client #3"
-                            numberOfTasks="10"
+                            numberOfTasks="42"
                             completedTasks="8"
                         />
                     </Grid>
@@ -232,8 +233,8 @@ function Dashboard() {
                     </Grid>
                 </Grid>
             </SuiBox>
-            </Card>
-        </SuiBox>
+        </Card>
+    </SuiBox>
 
       <Footer />
     </DashboardLayout>

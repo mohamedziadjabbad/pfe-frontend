@@ -4,7 +4,8 @@ x remove and edit project
 x remove image
 x change props
 x add date with description style
+x VIEW PROJECT into -> delete project
 
-- VIEW PROJECT into -> delete project
-- sign in to sign out
 - settings -> edit project
+- sign in -> sign out
+- add new project

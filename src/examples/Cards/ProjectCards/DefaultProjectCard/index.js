@@ -30,6 +30,8 @@ import SuiTypography from "components/SuiTypography";
 import SuiButton from "components/SuiButton";
 import SuiAvatar from "components/SuiAvatar";
 
+import SuiProgress from "components/SuiProgress";
+
 function DefaultProjectCard({ title, description, startDate, endDate, expectedEndDate, authors, client, numberOfTasks, completedTasks }) {
   const renderAuthors = authors.map(({ image: media, name }) => (
     <Tooltip key={name} title={name} placement="bottom">
@@ -91,6 +93,14 @@ function DefaultProjectCard({ title, description, startDate, endDate, expectedEn
                 <ul style={{listStyle:"none"}}>
                     <li>Number of tasks: {numberOfTasks}</li>
                     <li>Completed tasks: {completedTasks}</li>
+                    <li>
+                        <br />
+                        <SuiProgress 
+                            value={(completedTasks / numberOfTasks) * 100} 
+                            color={ completedTasks == numberOfTasks ? "success" : "info"} 
+                            variant="gradient" 
+                            label={false} />
+                    </li>
                 </ul>
             </SuiTypography>
         </SuiBox>
