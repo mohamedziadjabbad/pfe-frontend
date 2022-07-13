@@ -119,15 +119,9 @@ return (
         <Grid item>
         <SuiBox height="100%" mt={0.5} lineHeight={1}>
             <SuiTypography variant="h5" fontWeight="medium">
-            {ENVIRONMENT_VARIABLES.session.firstName + " " + ENVIRONMENT_VARIABLES.session.lastName} 
+            FirstName LastName
             </SuiTypography>
-            {ENVIRONMENT_VARIABLES.session.roles.map((element) => {
-                return (
-                    <SuiTypography variant="button" color="text" fontWeight="medium">
-                        {element.authority}
-                    </SuiTypography>
-                )
-            })}
+            Example Role
         </SuiBox>
         </Grid>
     </Grid>
