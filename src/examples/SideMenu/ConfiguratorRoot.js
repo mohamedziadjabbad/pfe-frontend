@@ -19,7 +19,7 @@ import { styled } from "@mui/material/styles";
 
 export default styled(Drawer)(({ theme, ownerState }) => {
   const { boxShadows, functions, transitions } = theme;
-  const  { openConfigurator } = ownerState;
+  let openConfigurator = ownerState;
 
   const configuratorWidth = 360;
   const { lg } = boxShadows;

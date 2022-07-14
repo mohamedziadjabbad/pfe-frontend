@@ -54,6 +54,7 @@ import Card from "@mui/material/Card";
 import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
 import PlaceholderCard from "examples/Cards/PlaceholderCard";
 
+
 import { useSoftUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
 function Dashboard() {
@@ -61,6 +62,7 @@ function Dashboard() {
     const { isLogged } = useSelector((state) => state.user);
     const { size } = typography;
     const { chart, items } = reportsBarChartData;
+
 
     useEffect(() => {
         if (!isLogged) {
@@ -246,10 +248,13 @@ function Dashboard() {
                     <Grid item xs={12} md={6} xl={3} onClick={handleToggleSideMenu} style={{cursor: 'pointer'}}>
                         <PlaceholderCard title={{ variant: "h5", text: "New project" }} outlined />
                     </Grid>
+                    
                 </Grid>
             </SuiBox>
         </Card>
     </SuiBox>
+
+    
 
       <Footer />
     </DashboardLayout>

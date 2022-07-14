@@ -30,52 +30,62 @@ import Table from "examples/Tables/Table";
 import authorsTableData from "layouts/tables/data/authorsTableData";
 import projectsTableData from "layouts/tables/data/projectsTableData";
 
+import AddEditUser from "examples/SideMenu/AddEditUser";
+import AddEditTask from "examples/SideMenu/AddEditTask";
+
+import React from "react";
+
 function Tables() {
   const { columns, rows } = authorsTableData;
   const { columns: prCols, rows: prRows } = projectsTableData;
 
+  const [userSidePanel, setUserSidePanel] = React.useState(false)
+  const [taskSidePanel, setTaskSidePanel] = React.useState(false)
+
   return (
     <DashboardLayout>
-      <DashboardNavbar />
-      <SuiBox py={3}>
-        <SuiBox mb={3}>
-          <Card>
+        <DashboardNavbar />
+        <SuiBox py={3}>
+            <SuiBox mb={3}>
+            <Card>
+                <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+                <SuiTypography variant="h6">Authors table</SuiTypography>
+                </SuiBox>
+                <SuiBox
+                sx={{
+                    "& .MuiTableRow-root:not(:last-child)": {
+                    "& td": {
+                        borderBottom: ({ borders: { borderWidth, borderColor } }) =>
+                        `${borderWidth[1]} solid ${borderColor}`,
+                    },
+                    },
+                }}
+                >
+                <Table columns={columns} rows={rows} />
+                </SuiBox>
+            </Card>
+            </SuiBox>
+            <Card>
             <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-              <SuiTypography variant="h6">Authors table</SuiTypography>
+                <SuiTypography variant="h6">Projects table</SuiTypography>
             </SuiBox>
             <SuiBox
-              sx={{
+                sx={{
                 "& .MuiTableRow-root:not(:last-child)": {
-                  "& td": {
+                    "& td": {
                     borderBottom: ({ borders: { borderWidth, borderColor } }) =>
-                      `${borderWidth[1]} solid ${borderColor}`,
-                  },
+                        `${borderWidth[1]} solid ${borderColor}`,
+                    },
                 },
-              }}
+                }}
             >
-              <Table columns={columns} rows={rows} />
+                <Table columns={prCols} rows={prRows} />
             </SuiBox>
-          </Card>
+            </Card>
         </SuiBox>
-        <Card>
-          <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-            <SuiTypography variant="h6">Projects table</SuiTypography>
-          </SuiBox>
-          <SuiBox
-            sx={{
-              "& .MuiTableRow-root:not(:last-child)": {
-                "& td": {
-                  borderBottom: ({ borders: { borderWidth, borderColor } }) =>
-                    `${borderWidth[1]} solid ${borderColor}`,
-                },
-              },
-            }}
-          >
-            <Table columns={prCols} rows={prRows} />
-          </SuiBox>
-        </Card>
-      </SuiBox>
-      <Footer />
+        <AddEditUser display={userSidePanel}/>
+        <AddEditTask display={taskSidePanel}/>
+    <Footer />
     </DashboardLayout>
   );
 }
