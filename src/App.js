@@ -25,6 +25,12 @@ import Icon from "@mui/material/Icon";
 
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
+import Dashboard from "layouts/dashboard";
+import Tables from "layouts/tables";
+import Billing from "layouts/billing";
+import Profile from "layouts/profile";
+import SignIn from "layouts/authentication/sign-in";
+import SignUp from "layouts/authentication/sign-up";
 
 // Soft UI Dashboard React examples
 import Sidenav from "examples/Sidenav";
@@ -45,140 +51,149 @@ import routes from "routes";
 // Soft UI Dashboard React contexts
 import { useSoftUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
+// redux state hooks
+import { useSelector, useDispatch } from "react-redux";
+
 // Images
 import brand from "assets/images/logo-ct.png";
 
 export default function App() {
-  const [controller, dispatch] = useSoftUIController();
-  const { miniSidenav, direction, layout, openConfigurator, sidenavColor } = controller;
-  const [onMouseEnter, setOnMouseEnter] = useState(false);
-  const [rtlCache, setRtlCache] = useState(null);
-  const { pathname } = useLocation();
+    const { isLogged } = useSelector((state) => state.user);
 
-  // Cache for the rtl
-  useMemo(() => {
-    const cacheRtl = createCache({
-      key: "rtl",
-      stylisPlugins: [rtlPlugin],
-    });
+    const [controller, dispatch] = useSoftUIController();
+    const { miniSidenav, direction, layout, openConfigurator, sidenavColor } = controller;
+    const [onMouseEnter, setOnMouseEnter] = useState(false);
+    const [rtlCache, setRtlCache] = useState(null);
+    const { pathname } = useLocation();
 
-    setRtlCache(cacheRtl);
-  }, []);
+    // Cache for the rtl
+    useMemo(() => {
+        const cacheRtl = createCache({
+            key: "rtl",
+            stylisPlugins: [rtlPlugin],
+        });
 
-  // Open sidenav when mouse enter on mini sidenav
-  const handleOnMouseEnter = () => {
-    if (miniSidenav && !onMouseEnter) {
-      setMiniSidenav(dispatch, false);
-      setOnMouseEnter(true);
-    }
-  };
+        setRtlCache(cacheRtl);
+    }, []);
 
-  // Close sidenav when mouse leave mini sidenav
-  const handleOnMouseLeave = () => {
-    if (onMouseEnter) {
-      setMiniSidenav(dispatch, true);
-      setOnMouseEnter(false);
-    }
-  };
+    // Open sidenav when mouse enter on mini sidenav
+    const handleOnMouseEnter = () => {
+        if (miniSidenav && !onMouseEnter) {
+            setMiniSidenav(dispatch, false);
+            setOnMouseEnter(true);
+        }
+    };
 
-  // Change the openConfigurator state
-  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
+    // Close sidenav when mouse leave mini sidenav
+    const handleOnMouseLeave = () => {
+        if (onMouseEnter) {
+            setMiniSidenav(dispatch, true);
+            setOnMouseEnter(false);
+        }
+    };
 
-  // Setting the dir attribute for the body element
-  useEffect(() => {
-    document.body.setAttribute("dir", direction);
-  }, [direction]);
+    // Change the openConfigurator state
+    const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
 
-  // Setting page scroll to 0 when changing the route
-  useEffect(() => {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-  }, [pathname]);
+    // Setting the dir attribute for the body element
+    useEffect(() => {
+        document.body.setAttribute("dir", direction);
+    }, [direction]);
 
-  const getRoutes = (allRoutes) =>
-    allRoutes.map((route) => {
-      if (route.collapse) {
-        return getRoutes(route.collapse);
-      }
+    // Setting page scroll to 0 when changing the route
+    useEffect(() => {
+        document.documentElement.scrollTop = 0;
+        document.scrollingElement.scrollTop = 0;
+    }, [pathname]);
 
-      if (route.route) {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
-      }
+    const getRoutes = (allRoutes) =>
+        allRoutes.map((route) => {
+            if (route.collapse) {
+                return getRoutes(route.collapse);
+            }
 
-      return null;
-    });
+            if (isLogged && route.auth) {
+                return <Route exact path={route.route} element={route.component} key={route.key} />;
+            } else {
+                return <Route exact path={route.route} element={route.component} key={route.key} />;
+            }
 
-  const configsButton = (
-    <SuiBox
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      width="3.5rem"
-      height="3.5rem"
-      bgColor="white"
-      shadow="sm"
-      borderRadius="50%"
-      position="fixed"
-      right="2rem"
-      bottom="2rem"
-      zIndex={99}
-      color="dark"
-      sx={{ cursor: "pointer" }}
-      onClick={handleConfiguratorOpen}
-    >
-      <Icon fontSize="default" color="inherit">
-        settings
-      </Icon>
-    </SuiBox>
-  );
+            return null;
+        });
 
-  return direction === "rtl" ? (
-    <CacheProvider value={rtlCache}>
-      <ThemeProvider theme={themeRTL}>
-        <CssBaseline />
-        {layout === "dashboard" && (
-          <>
-            <Sidenav
-              color={sidenavColor}
-              brand={brand}
-              brandName="Gestion de projects"
-              routes={routes}
-              onMouseEnter={handleOnMouseEnter}
-              onMouseLeave={handleOnMouseLeave}
-            />
-            <Configurator />
-            {configsButton}
-          </>
-        )}
-        {layout === "vr" && <Configurator />}
-        <Routes>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
-        </Routes>
-      </ThemeProvider>
-    </CacheProvider>
-  ) : (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {layout === "dashboard" && (
-        <>
-          <Sidenav
-            color={sidenavColor}
-            brand={brand}
-            brandName="Gestion de projects"
-            routes={routes}
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
-          />
-          <Configurator />
-          {configsButton}
-        </>
-      )}
-      {layout === "vr" && <Configurator />}
-      <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
-      </Routes>
-    </ThemeProvider>
-  );
+    const configsButton = (
+        <SuiBox
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            width="3.5rem"
+            height="3.5rem"
+            bgColor="white"
+            shadow="sm"
+            borderRadius="50%"
+            position="fixed"
+            right="2rem"
+            bottom="2rem"
+            zIndex={99}
+            color="dark"
+            sx={{ cursor: "pointer" }}
+            onClick={handleConfiguratorOpen}
+        >
+            <Icon fontSize="default" color="inherit">
+                settings
+            </Icon>
+        </SuiBox>
+    );
+
+    return direction === "rtl" ? (
+        <CacheProvider value={rtlCache}>
+            <ThemeProvider theme={themeRTL}>
+                <CssBaseline />
+                {layout === "dashboard" && (
+                    <>
+                        <Sidenav
+                            color={sidenavColor}
+                            brand={brand}
+                            brandName="Gestion de projects"
+                            routes={routes}
+                            onMouseEnter={handleOnMouseEnter}
+                            onMouseLeave={handleOnMouseLeave}
+                        />
+                        <Configurator />
+                        {configsButton}
+                    </>
+                )}
+                {layout === "vr" && <Configurator />}
+
+                <Routes>
+                    {getRoutes(routes)}
+                    {isLogged && <Route path="*" element={<Navigate to="/dashboard" />} />}
+                </Routes>
+            </ThemeProvider>
+        </CacheProvider>
+    ) : (
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            {layout === "dashboard" && (
+                <>
+                    <Sidenav
+                        color={sidenavColor}
+                        brand={brand}
+                        brandName="Gestion de projects"
+                        routes={routes}
+                        onMouseEnter={handleOnMouseEnter}
+                        onMouseLeave={handleOnMouseLeave}
+                    />
+                    <Configurator />
+                    {configsButton}
+                </>
+            )}
+            {layout === "vr" && <Configurator />}
+
+            <Routes>
+                {getRoutes(routes)}
+                {isLogged && <Route path="*" element={<Navigate to="/dashboard" />} />}
+            </Routes>
+        </ThemeProvider>
+    );
 }
