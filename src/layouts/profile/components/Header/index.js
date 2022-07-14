@@ -42,9 +42,6 @@ import breakpoints from "assets/theme/base/breakpoints";
 import burceMars from "assets/images/bruce-mars.jpg";
 import curved0 from "assets/images/curved-images/curved0.jpg";
 
-import ENVIRONMENT_VARIABLES from "usables/ENVIRONMENT_VARIABLES.json";
-
-import { CheckSession } from "usables/checkSession";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
