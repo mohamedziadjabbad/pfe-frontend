@@ -146,45 +146,45 @@ function DashboardNavbar({ absolute, light, isMini }) {
           <Breadcrumbs icon="home" title={route[route.length - 1]} route={route} light={light} />
         </SuiBox>
         {isMini ? null : (
-          <SuiBox sx={(theme) => navbarRow(theme, { isMini })}>
-            <SuiBox pr={1}>
-              <SuiInput
-                placeholder="Type here..."
-                icon={{ component: "search", direction: "left" }}
-              />
-            </SuiBox>
-            <SuiBox color={light ? "white" : "inherit"}>
-              <Link to="/authentication/sign-in">
-                <IconButton sx={navbarIconButton} size="small">
-                  <Icon
-                    sx={({ palette: { dark, white } }) => ({
-                      color: light ? white.main : dark.main,
-                    })}
-                  >
-                    account_circle
-                  </Icon>
-                  <SuiTypography
-                    variant="button"
-                    fontWeight="medium"
-                    color={light ? "white" : "dark"}
-                  >
-                    Sign in
-                  </SuiTypography>
+            <SuiBox sx={(theme) => navbarRow(theme, { isMini })}>
+                <SuiBox pr={1}>
+                <SuiInput
+                    placeholder="Type here..."
+                    icon={{ component: "search", direction: "left" }}
+                />
+                </SuiBox>
+                <SuiBox color={light ? "white" : "inherit"}>
+                    <Link to="/authentication/sign-in">
+                        <IconButton sx={navbarIconButton} size="small">
+                        <Icon
+                            sx={({ palette: { dark, white } }) => ({
+                            color: light ? white.main : dark.main,
+                            })}
+                        >
+                            account_circle
+                        </Icon>
+                        <SuiTypography
+                            variant="button"
+                            fontWeight="medium"
+                            color={light ? "white" : "dark"}
+                        >
+                            Sign in
+                        </SuiTypography>
+                        </IconButton>
+                    </Link>
+                    <IconButton
+                        size="small"
+                        color="inherit"
+                        sx={navbarMobileMenu}
+                        onClick={handleMiniSidenav}
+                    >
+                    <Icon className={light ? "text-white" : "text-dark"}>
+                        {miniSidenav ? "menu_open" : "menu"}
+                    </Icon>
                 </IconButton>
-              </Link>
-              <IconButton
-                size="small"
-                color="inherit"
-                sx={navbarMobileMenu}
-                onClick={handleMiniSidenav}
-              >
-                <Icon className={light ? "text-white" : "text-dark"}>
-                  {miniSidenav ? "menu_open" : "menu"}
-                </Icon>
-              </IconButton>
-              {renderMenu()}
+                {renderMenu()}
+                </SuiBox>
             </SuiBox>
-          </SuiBox>
         )}
       </Toolbar>
     </AppBar>

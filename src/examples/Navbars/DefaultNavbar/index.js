@@ -69,6 +69,7 @@ function DefaultNavbar({ transparent, light, action }) {
     return () => window.removeEventListener("resize", displayMobileNavbar);
   }, []);
 
+
   return (
     <Container>
       <SuiBox
