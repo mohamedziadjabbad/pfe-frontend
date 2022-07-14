@@ -1,45 +1,30 @@
-- how to interact with the server from front end.
-- do I have to connect to superAdmin in every session?
-- Error 500 creating a new user:
-    {
-        "username": "username1",
-        "password": "password1",
-        "firstname": "first name 1",
-        "lastname": "last name 1",
-        "phone": "0600000000",
-        "email": "test@email",
-        "enable": true,
-        "roles": [
-            "id": 3,
-            "name": "MEMBRE",
-            "permissions": [
-                {
-                    {
-                        "id": 4,
-                        "name": "SHOW_PROJECT"
-                    },
-                    {
-                        "id": 9,
-                        "name": "SHOW_TASK"
-                    },
-                    {
-                        "id": 10,
-                        "name": "ACTION_TASK"
-                    },
-                    {
-                        "id": 29,
-                        "name": "SHOW_STATUS"
-                    },
-                    {
-                        "id": 5,
-                        "name": "ACTION_PROJECT"
-                    }
-                }
-            ]
-    }
+x project to dashboard
+x project card information
+x remove and edit project
+x remove image
+x change props
+x add date with description style
+x VIEW PROJECT into -> delete project
+x settings -> edit project
+x add new project
+x sign in -> sign out
+x remove settings button
 
-- session in backend 
-or 
-- user by ID endpoint
 
-- statusCode in successful connection
+- change attributes in team and projects tables
+- authors table -> users table
+    - add user
+    - actions: edit and remove
+- projects table -> tasks table
+    - add task
+    - actions: edit and remove
+- show users
+DASHBOARD:
+- project table -> clients table
+- orders overview -> categories table
+
+Duplicate configurator:
+    - add/edit user
+    - add/edit task
+
+- change graph labels keep fake data

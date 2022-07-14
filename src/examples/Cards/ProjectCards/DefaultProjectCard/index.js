@@ -17,7 +17,7 @@ Coded by www.creative-tim.com
 import { Link } from "react-router-dom";
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes, { number } from "prop-types";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -30,7 +30,9 @@ import SuiTypography from "components/SuiTypography";
 import SuiButton from "components/SuiButton";
 import SuiAvatar from "components/SuiAvatar";
 
-function DefaultProjectCard({ image, label, title, description, action, authors }) {
+import SuiProgress from "components/SuiProgress";
+
+function DefaultProjectCard({ title, description, startDate, endDate, expectedEndDate, authors, client, numberOfTasks, completedTasks }) {
   const renderAuthors = authors.map(({ image: media, name }) => (
     <Tooltip key={name} title={name} placement="bottom">
       <SuiAvatar
@@ -59,87 +61,78 @@ function DefaultProjectCard({ image, label, title, description, action, authors 
         backgroundColor: "transparent",
         boxShadow: "none",
         overflow: "visible",
-      }}
+        // borderColor: "black",
+        // borderWidth: "1px",
+        // padding: "5px",
+        // borderRadius: "5px",
+    }}
     >
-      <SuiBox position="relative" width="100.25%" shadow="xl" borderRadius="xl">
-        <CardMedia
-          src={image}
-          component="img"
-          title={title}
-          sx={{
-            maxWidth: "100%",
-            margin: 0,
-            boxShadow: ({ boxShadows: { md } }) => md,
-            objectFit: "cover",
-            objectPosition: "center",
-          }}
-        />
-      </SuiBox>
-      <SuiBox pt={3} px={0.5}>
-        <SuiBox mb={1}>
-          <SuiTypography
-            variant="button"
-            fontWeight="regular"
-            textTransform="capitalize"
-            textGradient
-          >
-            {label}
-          </SuiTypography>
-        </SuiBox>
-        <SuiBox mb={1}>
-          {action.type === "internal" ? (
-            <SuiTypography
-              component={Link}
-              to={action.route}
-              variant="h5"
-              textTransform="capitalize"
-            >
-              {title}
-            </SuiTypography>
-          ) : (
-            <SuiTypography
-              component="a"
-              href={action.route}
-              target="_blank"
-              rel="noreferrer"
-              variant="h5"
-              textTransform="capitalize"
-            >
-              {title}
-            </SuiTypography>
-          )}
-        </SuiBox>
+
+
+    <SuiBox pt={3} px={0.5}>
         <SuiBox mb={3} lineHeight={0}>
-          <SuiTypography variant="button" fontWeight="regular" color="text">
-            {description}
-          </SuiTypography>
+            <SuiTypography variant="button" fontWeight="regular" color="text">
+                <h3>{title}</h3> <br />
+                <i>{description}</i>
+            </SuiTypography>
         </SuiBox>
+
+        <SuiBox mb={3} lineHeight={0}>
+            <SuiTypography variant="button" fontWeight="regular" color="text">
+                <ul style={{listStyle:"none"}}>
+                    <li>Start date: {startDate}</li>
+                    <li>Expected End Date: {expectedEndDate}</li>
+                    <li>End date: {endDate}</li>
+                    <li>Client: {client}</li>
+                </ul>
+            </SuiTypography>
+        </SuiBox>
+
+        <SuiBox mb={3} lineHeight={0}>
+            <SuiTypography variant="button" fontWeight="regular" color="text">
+                <ul style={{listStyle:"none"}}>
+                    <li>Number of tasks: {numberOfTasks}</li>
+                    <li>Completed tasks: {completedTasks}</li>
+                    <li>
+                        <br />
+                        <SuiProgress 
+                            value={(completedTasks / numberOfTasks) * 100} 
+                            color={ completedTasks == numberOfTasks ? "success" : "info"} 
+                            variant="gradient" 
+                            label={false} />
+                    </li>
+                </ul>
+            </SuiTypography>
+        </SuiBox>
+
+        <SuiBox mb={3} lineHeight={0}>
+            <SuiTypography variant="button" fontWeight="regular" color="text" display="flex" justifyContent="space-between" alignItems="center">
+                Team:
+                <SuiBox display="flex">{renderAuthors}</SuiBox>
+            </SuiTypography>
+        </SuiBox>
+
         <SuiBox display="flex" justifyContent="space-between" alignItems="center">
-          {action.type === "internal" ? (
             <SuiButton
-              component={Link}
-              to={action.route}
-              variant="outlined"
-              size="small"
-              color={action.color}
+                component={Link}
+                to={""}
+                variant="outlined"
+                size="small"
+                color={"info"}
             >
-              {action.label}
+                Edit
             </SuiButton>
-          ) : (
             <SuiButton
-              component="a"
-              href={action.route}
-              target="_blank"
-              rel="noreferrer"
-              variant="outlined"
-              size="small"
-              color={action.color}
+                component={Link}
+                to={""}
+                variant="outlined"
+                size="small"
+                color={"error"}
             >
-              {action.label}
+                Remove
             </SuiButton>
-          )}
-          <SuiBox display="flex">{renderAuthors}</SuiBox>
         </SuiBox>
+            
       </SuiBox>
     </Card>
   );
