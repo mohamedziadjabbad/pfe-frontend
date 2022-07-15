@@ -10,6 +10,8 @@ x add new project
 x sign in -> sign out
 
 x remove settings button
+
+
 x change attributes in team and projects tables
 x authors table -> users table
     x add user
@@ -32,8 +34,8 @@ x change graph labels keep fake data
 
 X font weight in projects attributes
 X functional edit buttons in projects
-o fix graph bug
 
+o fix graph bug
 - functional edit button in Tables page
 - Finish Task button
 

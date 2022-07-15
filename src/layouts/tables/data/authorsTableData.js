@@ -64,18 +64,18 @@ const authorsTableData = {
         </SuiTypography>
       ),
       action: (
-        <SuiBox display="flex" flexDirection="column" gap="5px">
+        <SuiBox display="flex" flexDirection="row" gap="5px">
             <SuiButton
                 // onClick={}
-                // variant="outlined"
+                variant="text"
                 size="small"
-                color={"info"}
+                color={"text"}
             >
                 Edit
             </SuiButton>
             <SuiButton
                 // onClick={}
-                // variant="outlined"
+                variant="text"
                 size="small"
                 color={"error"}
             >
@@ -93,18 +93,18 @@ const authorsTableData = {
         </SuiTypography>
       ),
       action: (
-        <SuiBox display="flex" flexDirection="column" gap="5px">
+        <SuiBox display="flex" flexDirection="row" gap="5px">
             <SuiButton
                 // onClick={}
-                // variant="outlined"
+                variant="text"
                 size="small"
-                color={"info"}
+                color={"text"}
             >
                 Edit
             </SuiButton>
             <SuiButton
                 // onClick={}
-                // variant="outlined"
+                variant="text"
                 size="small"
                 color={"error"}
             >
@@ -122,26 +122,27 @@ const authorsTableData = {
         </SuiTypography>
       ),
       action: (
-        <SuiBox display="flex" flexDirection="column" gap="5px">
+        <SuiBox display="flex" flexDirection="row" gap="5px">
             <SuiButton
                 // onClick={}
-                // variant="outlined"
+                variant="text"
                 size="small"
-                color={"info"}
+                color={"text"}
             >
                 Edit
             </SuiButton>
             <SuiButton
                 // onClick={}
-                // variant="outlined"
+                variant="text"
                 size="small"
                 color={"error"}
             >
                 Remove
             </SuiButton>
-         </SuiBox>
+    </SuiBox>
       ),
     },  
+
   ],
 };
 

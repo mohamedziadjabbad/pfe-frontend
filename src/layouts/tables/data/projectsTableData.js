@@ -110,18 +110,18 @@ const projectsTableData = {
       ),
       actions: (
         <SuiTypography variant="caption" color="text" fontWeight="medium">
-            <SuiBox display="flex" flexDirection="column" gap="5px">
+            <SuiBox display="flex" flexDirection="row" gap="5px">
                 <SuiButton
                     // onClick={}
-                    // variant="outlined"
+                    variant="text"
                     size="small"
-                    color={"info"}
+                    color={"text"}
                 >
                     Edit
                 </SuiButton>
                 <SuiButton
                     // onClick={}
-                    // variant="outlined"
+                    variant="text"
                     size="small"
                     color={"error"}
                 >
@@ -135,7 +135,7 @@ const projectsTableData = {
     {
       name: (
         <SuiTypography variant="button" color="text" fontWeight="medium">
-          Test Task #2
+          Test Task #1
         </SuiTypography>
       ),
       members: (
@@ -143,9 +143,9 @@ const projectsTableData = {
             {
             renderAuthors(
             [
+                { image: team1, name: "Elena Morison" },
                 { image: team2, name: "Ryan Milly" },
                 { image: team3, name: "Nick Daniel" },
-                { image: team1, name: "Elena Morison" },
                 { image: team4, name: "Peterson" },
             ]
             )
@@ -154,77 +154,12 @@ const projectsTableData = {
       ),
       priority: (
         <SuiTypography variant="caption" color="text" fontWeight="medium">
-            LOW
+            HIGH
         </SuiTypography>
       ),
       project: (
         <SuiTypography variant="caption" color="text" fontWeight="medium">
-            project #2
-        </SuiTypography>
-      ),
-      status: (
-        <SuiTypography variant="caption" color="text" fontWeight="medium">
-            on hold
-        </SuiTypography>
-      ),
-      completion: <Completion value={0} color="info" />,
-      Deadline: (
-        <SuiTypography variant="caption" color="text" fontWeight="medium">
-            16-Jul-2022
-        </SuiTypography>
-      ),
-      actions: (
-        <SuiTypography variant="caption" color="text" fontWeight="medium">
-            <SuiBox display="flex" flexDirection="column" gap="5px">
-                <SuiButton
-                    // onClick={}
-                    // variant="outlined"
-                    size="small"
-                    color={"info"}
-                >
-                    Edit
-                </SuiButton>
-                <SuiButton
-                    // onClick={}
-                    // variant="outlined"
-                    size="small"
-                    color={"error"}
-                >
-                    Remove
-                </SuiButton>
-            </SuiBox>
-        </SuiTypography>
-      ),
-
-    },
-    {
-      name: (
-        <SuiTypography variant="button" color="text" fontWeight="medium">
-          Test Task #3
-        </SuiTypography>
-      ),
-      members: (
-        <SuiBox display="flex">
-            {
-            renderAuthors(
-            [
-                { image: team4, name: "Peterson" },
-                { image: team1, name: "Elena Morison" },
-                { image: team3, name: "Nick Daniel" },
-                { image: team2, name: "Ryan Milly" },
-            ]
-            )
-            }
-        </SuiBox>
-      ),
-      priority: (
-        <SuiTypography variant="caption" color="text" fontWeight="medium">
-            MEDIUM
-        </SuiTypography>
-      ),
-      project: (
-        <SuiTypography variant="caption" color="text" fontWeight="medium">
-            project #3
+            project #1
         </SuiTypography>
       ),
       status: (
@@ -232,26 +167,26 @@ const projectsTableData = {
             working
         </SuiTypography>
       ),
-      completion: <Completion value={100} color="info" />,
+      completion: <Completion value={60} color="info" />,
       Deadline: (
         <SuiTypography variant="caption" color="text" fontWeight="medium">
-          16-Jul-2022
+          18-Jul-2022
         </SuiTypography>
       ),
       actions: (
         <SuiTypography variant="caption" color="text" fontWeight="medium">
-            <SuiBox display="flex" flexDirection="column" gap="5px">
+            <SuiBox display="flex" flexDirection="row" gap="5px">
                 <SuiButton
                     // onClick={}
-                    // variant="outlined"
+                    variant="text"
                     size="small"
-                    color={"info"}
+                    color={"text"}
                 >
                     Edit
                 </SuiButton>
                 <SuiButton
                     // onClick={}
-                    // variant="outlined"
+                    variant="text"
                     size="small"
                     color={"error"}
                 >
@@ -262,6 +197,72 @@ const projectsTableData = {
       ),
 
     },
+    {
+      name: (
+        <SuiTypography variant="button" color="text" fontWeight="medium">
+          Test Task #1
+        </SuiTypography>
+      ),
+      members: (
+        <SuiBox display="flex">
+            {
+            renderAuthors(
+            [
+                { image: team1, name: "Elena Morison" },
+                { image: team2, name: "Ryan Milly" },
+                { image: team3, name: "Nick Daniel" },
+                { image: team4, name: "Peterson" },
+            ]
+            )
+            }
+        </SuiBox>
+      ),
+      priority: (
+        <SuiTypography variant="caption" color="text" fontWeight="medium">
+            HIGH
+        </SuiTypography>
+      ),
+      project: (
+        <SuiTypography variant="caption" color="text" fontWeight="medium">
+            project #1
+        </SuiTypography>
+      ),
+      status: (
+        <SuiTypography variant="caption" color="text" fontWeight="medium">
+            working
+        </SuiTypography>
+      ),
+      completion: <Completion value={60} color="info" />,
+      Deadline: (
+        <SuiTypography variant="caption" color="text" fontWeight="medium">
+          18-Jul-2022
+        </SuiTypography>
+      ),
+      actions: (
+        <SuiTypography variant="caption" color="text" fontWeight="medium">
+            <SuiBox display="flex" flexDirection="row" gap="5px">
+                <SuiButton
+                    // onClick={}
+                    variant="text"
+                    size="small"
+                    color={"text"}
+                >
+                    Edit
+                </SuiButton>
+                <SuiButton
+                    // onClick={}
+                    variant="text"
+                    size="small"
+                    color={"error"}
+                >
+                    Remove
+                </SuiButton>
+            </SuiBox>
+        </SuiTypography>
+      ),
+
+    },
+    
   ],
 };
 

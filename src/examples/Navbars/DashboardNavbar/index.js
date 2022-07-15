@@ -147,12 +147,12 @@ function DashboardNavbar({ absolute, light, isMini }) {
         </SuiBox>
         {isMini ? null : (
             <SuiBox sx={(theme) => navbarRow(theme, { isMini })}>
-                <SuiBox pr={1}>
+                {/* <SuiBox pr={1}>
                 <SuiInput
                     placeholder="Type here..."
                     icon={{ component: "search", direction: "left" }}
                 />
-                </SuiBox>
+                </SuiBox> */}
                 <SuiBox color={light ? "white" : "inherit"}>
                     <Link to="/authentication/sign-in">
                         <IconButton sx={navbarIconButton} size="small">
