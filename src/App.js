@@ -118,31 +118,31 @@ export default function App() {
       return null;
     });
 
-  const configsButton = (
-    <SuiBox
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      width="3.5rem"
-      height="3.5rem"
-      bgColor="dark"
-      shadow="sm"
-      borderRadius="50%"
+//   const configsButton = (
+//     <SuiBox
+//       display="flex"
+//       justifyContent="center"
+//       alignItems="center"
+//       width="3.5rem"
+//       height="3.5rem"
+//       bgColor="dark"
+//       shadow="sm"
+//       borderRadius="50%"
       
-      position="fixed"
-      right="2rem"
-      bottom="2rem"
-      zIndex={99}
-      color="white"
-      sx={{ cursor: "pointer" }}
-      onClick={handleConfiguratorOpen}
-    >
-      {/* <Icon fontSize="default" color="inherit">
-        settings
-      </Icon> */}
-      +
-    </SuiBox>
-  );
+//       position="fixed"
+//       right="2rem"
+//       bottom="2rem"
+//       zIndex={99}
+//       color="white"
+//       sx={{ cursor: "pointer" }}
+//       onClick={handleConfiguratorOpen}
+//     >
+//       {/* <Icon fontSize="default" color="inherit">
+//         settings
+//       </Icon> */}
+//       +
+//     </SuiBox>
+//   );
 
   return direction === "rtl" ? (
     <CacheProvider value={rtlCache}>
@@ -159,7 +159,7 @@ export default function App() {
               onMouseLeave={handleOnMouseLeave}
             />
             <Configurator />
-            {configsButton}
+            {/* {configsButton} */}
           </>
         )}
         {layout === "vr" && <Configurator />}
@@ -183,7 +183,7 @@ export default function App() {
             onMouseLeave={handleOnMouseLeave}
           />
           <Configurator />
-          {configsButton}
+          {/* {configsButton} */}
         </>
       )}
       {layout === "vr" && <Configurator />}

@@ -2,14 +2,10 @@
 =========================================================
 * Soft UI Dashboard React - v3.1.0
 =========================================================
-
 * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
 * Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
 Coded by www.creative-tim.com
-
  =========================================================
-
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
@@ -99,7 +95,7 @@ return (
                 px={3}
             >
                 <SuiBox>
-                    <SuiTypography variant="h5">Create/Edit project</SuiTypography>
+                    <SuiTypography variant="h5">CONFIGURATOR MENU, THIS SOULDN'T BE USED</SuiTypography>
                     <SuiTypography variant="body2" color="text">
                         Fill the form bellow.
                     </SuiTypography>

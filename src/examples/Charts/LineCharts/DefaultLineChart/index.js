@@ -87,7 +87,7 @@ function DefaultLineChart({ title, description, height, chart }) {
 DefaultLineChart.defaultProps = {
   title: "",
   description: "",
-  height: "19.125rem",
+  height: "10rem",
 };
 
 // Typechecking props for the DefaultLineChart

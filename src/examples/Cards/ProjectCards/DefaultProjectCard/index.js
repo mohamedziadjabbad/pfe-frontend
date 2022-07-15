@@ -32,7 +32,7 @@ import SuiAvatar from "components/SuiAvatar";
 
 import SuiProgress from "components/SuiProgress";
 
-function DefaultProjectCard({ title, description, startDate, endDate, expectedEndDate, authors, client, numberOfTasks, completedTasks }) {
+function DefaultProjectCard({ title, description, startDate, endDate, expectedEndDate, authors, client, numberOfTasks, completedTasks, action }) {
   const renderAuthors = authors.map(({ image: media, name }) => (
     <Tooltip key={name} title={name} placement="bottom">
       <SuiAvatar
@@ -72,7 +72,7 @@ function DefaultProjectCard({ title, description, startDate, endDate, expectedEn
     <SuiBox pt={3} px={0.5}>
         <SuiBox mb={3} lineHeight={0}>
             <SuiTypography variant="button" fontWeight="regular" color="text">
-                <h3>{title}</h3> <br />
+                <h3 color="info">{title}</h3> <br />
                 <i>{description}</i>
             </SuiTypography>
         </SuiBox>
@@ -80,10 +80,10 @@ function DefaultProjectCard({ title, description, startDate, endDate, expectedEn
         <SuiBox mb={3} lineHeight={0}>
             <SuiTypography variant="button" fontWeight="regular" color="text">
                 <ul style={{listStyle:"none"}}>
-                    <li>Start date: {startDate}</li>
-                    <li>Expected End Date: {expectedEndDate}</li>
-                    <li>End date: {endDate}</li>
-                    <li>Client: {client}</li>
+                    <li><strong>Start date: </strong> {startDate}</li>
+                    <li><strong>Expected End Date: </strong>{expectedEndDate}</li>
+                    <li><strong>End date: </strong>{endDate}</li>
+                    <li><strong>Client: </strong>{client}</li>
                 </ul>
             </SuiTypography>
         </SuiBox>
@@ -91,8 +91,8 @@ function DefaultProjectCard({ title, description, startDate, endDate, expectedEn
         <SuiBox mb={3} lineHeight={0}>
             <SuiTypography variant="button" fontWeight="regular" color="text">
                 <ul style={{listStyle:"none"}}>
-                    <li>Number of tasks: {numberOfTasks}</li>
-                    <li>Completed tasks: {completedTasks}</li>
+                    <li><strong>Number of tasks: </strong>{numberOfTasks}</li>
+                    <li><strong>Completed tasks: </strong>{completedTasks}</li>
                     <li>
                         <br />
                         <SuiProgress 
@@ -106,32 +106,14 @@ function DefaultProjectCard({ title, description, startDate, endDate, expectedEn
         </SuiBox>
 
         <SuiBox mb={3} lineHeight={0}>
-            <SuiTypography variant="button" fontWeight="regular" color="text" display="flex" justifyContent="space-between" alignItems="center">
+            <SuiTypography variant="button" fontWeight="medium" color="text" display="flex" justifyContent="space-between" alignItems="center">
                 Team:
                 <SuiBox display="flex">{renderAuthors}</SuiBox>
             </SuiTypography>
         </SuiBox>
 
-        <SuiBox display="flex" justifyContent="space-between" alignItems="center">
-            <SuiButton
-                component={Link}
-                to={""}
-                variant="outlined"
-                size="small"
-                color={"info"}
-            >
-                Edit
-            </SuiButton>
-            <SuiButton
-                component={Link}
-                to={""}
-                variant="outlined"
-                size="small"
-                color={"error"}
-            >
-                Remove
-            </SuiButton>
-        </SuiBox>
+
+            {action}
             
       </SuiBox>
     </Card>
@@ -145,8 +127,7 @@ DefaultProjectCard.defaultProps = {
 
 // Typechecking props for the DefaultProjectCard
 DefaultProjectCard.propTypes = {
-  image: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   action: PropTypes.shape({
@@ -164,7 +145,7 @@ DefaultProjectCard.propTypes = {
       "white",
     ]).isRequired,
     label: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
   authors: PropTypes.arrayOf(PropTypes.object),
 };
 

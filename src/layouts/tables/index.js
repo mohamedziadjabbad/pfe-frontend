@@ -19,6 +19,7 @@ import Card from "@mui/material/Card";
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
+import SuiButton from "components/SuiButton";
 
 // Soft UI Dashboard React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -30,52 +31,79 @@ import Table from "examples/Tables/Table";
 import authorsTableData from "layouts/tables/data/authorsTableData";
 import projectsTableData from "layouts/tables/data/projectsTableData";
 
+import AddEditUser from "examples/SideMenu/AddEditUser";
+import AddEditTask from "examples/SideMenu/AddEditTask";
+
+import React from "react";
+
 function Tables() {
   const { columns, rows } = authorsTableData;
   const { columns: prCols, rows: prRows } = projectsTableData;
 
+  const [userSidePanel, setUserSidePanel] = React.useState(false)
+  const [taskSidePanel, setTaskSidePanel] = React.useState(false)
+
   return (
     <DashboardLayout>
-      <DashboardNavbar />
-      <SuiBox py={3}>
-        <SuiBox mb={3}>
-          <Card>
+        <DashboardNavbar />
+        <SuiBox py={3}>
+            <SuiBox mb={3}>
+            <Card>
+                <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+                <SuiTypography variant="h6">Users</SuiTypography>
+                <SuiButton
+                    onClick={ ()=>{setUserSidePanel(true)} }
+                    variant="outlined"
+                    size="small"
+                    color={"info"}
+                >
+                    Add user
+                </SuiButton>
+                </SuiBox>
+                <SuiBox
+                sx={{
+                    "& .MuiTableRow-root:not(:last-child)": {
+                    "& td": {
+                        borderBottom: ({ borders: { borderWidth, borderColor } }) =>
+                        `${borderWidth[1]} solid ${borderColor}`,
+                    },
+                    },
+                }}
+                >
+                <Table columns={columns} rows={rows} controller={setUserSidePanel}/>
+                </SuiBox>
+            </Card>
+            </SuiBox>
+            <Card>
             <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-              <SuiTypography variant="h6">Authors table</SuiTypography>
+                <SuiTypography variant="h6">Tasks</SuiTypography>
+                <SuiButton
+                    onClick={ ()=>{setTaskSidePanel(true)} }
+                    variant="outlined"
+                    size="small"
+                    color={"info"}
+                >
+                    Add Task
+                </SuiButton>
             </SuiBox>
             <SuiBox
-              sx={{
+                sx={{
                 "& .MuiTableRow-root:not(:last-child)": {
-                  "& td": {
+                    "& td": {
                     borderBottom: ({ borders: { borderWidth, borderColor } }) =>
-                      `${borderWidth[1]} solid ${borderColor}`,
-                  },
+                        `${borderWidth[1]} solid ${borderColor}`,
+                    },
                 },
-              }}
+                }}
             >
-              <Table columns={columns} rows={rows} />
+                <Table columns={prCols} rows={prRows} controller={setTaskSidePanel}/>
             </SuiBox>
-          </Card>
+            </Card>
         </SuiBox>
-        <Card>
-          <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-            <SuiTypography variant="h6">Projects table</SuiTypography>
-          </SuiBox>
-          <SuiBox
-            sx={{
-              "& .MuiTableRow-root:not(:last-child)": {
-                "& td": {
-                  borderBottom: ({ borders: { borderWidth, borderColor } }) =>
-                    `${borderWidth[1]} solid ${borderColor}`,
-                },
-              },
-            }}
-          >
-            <Table columns={prCols} rows={prRows} />
-          </SuiBox>
-        </Card>
-      </SuiBox>
-      <Footer />
+
+        <AddEditUser display={userSidePanel} setDisplay={setUserSidePanel}/>
+        <AddEditTask display={taskSidePanel} setDisplay={setTaskSidePanel}/>
+    <Footer />
     </DashboardLayout>
   );
 }

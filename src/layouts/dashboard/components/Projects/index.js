@@ -24,14 +24,20 @@ import MenuItem from "@mui/material/MenuItem";
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
+import SuiButton from "components/SuiButton";
 
 // Soft UI Dashboard Materail-UI example components
 import Table from "examples/Tables/Table";
 
 // Data
 import data from "layouts/dashboard/components/Projects/data";
+import React from "react";
+import AddEditClient from "examples/SideMenu/AddEditClients";
 
 function Projects() {
+
+    const [sidePanel, setSidePanel] = React.useState(false)
+
   const { columns, rows } = data();
   const [menu, setMenu] = useState(null);
 
@@ -61,11 +67,21 @@ function Projects() {
 
   return (
     <Card>
-      <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+      <SuiBox p={3}>
+        <SuiBox display="flex" justifyContent="space-between" alignItems="center">
+            <SuiTypography variant="h6" gutterBottom>
+                Clients
+            </SuiTypography>
+            <SuiButton
+                variant="outlined"
+                size="small"
+                color={"info"}
+                onClick={ ()=>{setSidePanel(true)} }
+                >
+                Add Client
+            </SuiButton>
+        </SuiBox>
         <SuiBox>
-          <SuiTypography variant="h6" gutterBottom>
-            Projects
-          </SuiTypography>
           <SuiBox display="flex" alignItems="center" lineHeight={0}>
             <Icon
               sx={{
@@ -77,16 +93,10 @@ function Projects() {
               done
             </Icon>
             <SuiTypography variant="button" fontWeight="regular" color="text">
-              &nbsp;<strong>30 done</strong> this month
+              &nbsp;<strong>3</strong> clients
             </SuiTypography>
           </SuiBox>
         </SuiBox>
-        <SuiBox color="text" px={2}>
-          <Icon sx={{ cursor: "pointer", fontWeight: "bold" }} fontSize="small" onClick={openMenu}>
-            more_vert
-          </Icon>
-        </SuiBox>
-        {renderMenu}
       </SuiBox>
       <SuiBox
         sx={{
@@ -98,8 +108,89 @@ function Projects() {
           },
         }}
       >
-        <Table columns={columns} rows={rows} />
+        <Table columns={
+                [
+                    { name: "name", align: "left" },
+                    { name: "company", align: "left" },
+                    { name: "phone", align: "left" },
+                    { name: "action", align: "left" },
+                ]
+            } 
+        
+            rows={
+                [
+                    {name: "Nom client #1", company: "Company client #1", phone: "Phone client #1", 
+                    action: 
+                        <SuiBox display="flex" alignItems="right">
+                            <SuiButton
+                                to={""}
+                                variant="text"
+                                size="small"
+                                color={"info"}
+                                onClick={ ()=>{setSidePanel(true)} }
+                            >
+                                Edit
+                            </SuiButton>
+                            <SuiButton
+                                to={""}
+                                variant="text"
+                                size="small"
+                                color={"error"}
+                            >
+                                Remove
+                            </SuiButton>
+                        </SuiBox>
+                    },
+                    {name: "Nom client #2", company: "Company client #2", phone: "Phone client #2", 
+                    action: 
+                        <SuiBox display="flex" alignItems="right">
+                            <SuiButton
+                                to={""}
+                                variant="text"
+                                size="small"
+                                color={"info"}
+                                onClick={ ()=>{setSidePanel(true)} }
+                            >
+                                Edit
+                            </SuiButton>
+                            <SuiButton
+                                to={""}
+                                variant="text"
+                                size="small"
+                                color={"error"}
+                            >
+                                Remove
+                            </SuiButton>
+                        </SuiBox>
+                    },
+                    {name: "Nom client #3", company: "Company client #3", phone: "Phone client #3", 
+                    action: 
+                        <SuiBox display="flex" alignItems="right">
+                            <SuiButton
+                                to={""}
+                                variant="text"
+                                size="small"
+                                color={"info"}
+                                onClick={ ()=>{setSidePanel(true)} }
+                            >
+                                Edit
+                            </SuiButton>
+                            <SuiButton
+                                to={""}
+                                variant="text"
+                                size="small"
+                                color={"error"}
+                            >
+                                Remove
+                            </SuiButton>
+                        </SuiBox>
+                    },
+                ]
+            } 
+        
+        />
       </SuiBox>
+      <AddEditClient display={sidePanel} setDisplay={setSidePanel}/>
     </Card>
   );
 }

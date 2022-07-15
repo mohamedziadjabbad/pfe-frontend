@@ -6,14 +6,14 @@ import Icon from "@mui/material/Icon";
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
 import SuiProgress from "components/SuiProgress";
+import Tooltip from "@mui/material/Tooltip";
+import SuiAvatar from "components/SuiAvatar";
+import SuiButton from "components/SuiButton";
 
-// Images
-import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
-import logoInvesion from "assets/images/small-logos/logo-invision.svg";
-import logoJira from "assets/images/small-logos/logo-jira.svg";
-import logoSlack from "assets/images/small-logos/logo-slack.svg";
-import logoWebDev from "assets/images/small-logos/logo-webdev.svg";
-import logoXD from "assets/images/small-logos/logo-xd.svg";
+import team1 from "assets/images/team-1.jpg";
+import team2 from "assets/images/team-2.jpg";
+import team3 from "assets/images/team-3.jpg";
+import team4 from "assets/images/team-4.jpg";
 
 function Completion({ value, color }) {
   return (
@@ -28,6 +28,26 @@ function Completion({ value, color }) {
   );
 }
 
+const renderAuthors = (authors) => authors.map(({ image: media, name }) => (
+    <Tooltip key={name} title={name} placement="bottom">
+      <SuiAvatar
+        src={media}
+        alt={name}
+        size="xs"
+        sx={({ borders: { borderWidth }, palette: { white } }) => ({
+          border: `${borderWidth[2]} solid ${white.main}`,
+          cursor: "pointer",
+          position: "relative",
+          ml: -1.25,
+
+          "&:hover, &:focus": {
+            zIndex: "10",
+          },
+        })}
+      />
+    </Tooltip>
+  ));
+
 const action = (
   <Icon sx={{ cursor: "pointer", fontWeight: "bold" }} fontSize="small">
     more_vert
@@ -36,103 +56,211 @@ const action = (
 
 const projectsTableData = {
   columns: [
+    { name: "name", align: "left" },
+    { name: "members", align: "left" },
+    { name: "priority", align: "left" },
     { name: "project", align: "left" },
-    { name: "budget", align: "left" },
     { name: "status", align: "left" },
     { name: "completion", align: "center" },
-    { name: "action", align: "center" },
+    { name: "Deadline", align: "left" },
+    { name: "actions", align: "center" },
   ],
 
   rows: [
     {
-      project: [logoSpotify, "Spotift"],
-      budget: (
+      name: (
         <SuiTypography variant="button" color="text" fontWeight="medium">
-          $2,500
+          Test Task #1
+        </SuiTypography>
+      ),
+      members: (
+        <SuiBox display="flex">
+            {
+            renderAuthors(
+            [
+                { image: team1, name: "Elena Morison" },
+                { image: team2, name: "Ryan Milly" },
+                { image: team3, name: "Nick Daniel" },
+                { image: team4, name: "Peterson" },
+            ]
+            )
+            }
+        </SuiBox>
+      ),
+      priority: (
+        <SuiTypography variant="caption" color="text" fontWeight="medium">
+            HIGH
+        </SuiTypography>
+      ),
+      project: (
+        <SuiTypography variant="caption" color="text" fontWeight="medium">
+            project #1
         </SuiTypography>
       ),
       status: (
         <SuiTypography variant="caption" color="text" fontWeight="medium">
-          working
+            working
         </SuiTypography>
       ),
       completion: <Completion value={60} color="info" />,
-      action,
+      Deadline: (
+        <SuiTypography variant="caption" color="text" fontWeight="medium">
+          18-Jul-2022
+        </SuiTypography>
+      ),
+      actions: (
+        <SuiTypography variant="caption" color="text" fontWeight="medium">
+            <SuiBox display="flex" flexDirection="column" gap="5px">
+                <SuiButton
+                    // onClick={}
+                    // variant="outlined"
+                    size="small"
+                    color={"info"}
+                >
+                    Edit
+                </SuiButton>
+                <SuiButton
+                    // onClick={}
+                    // variant="outlined"
+                    size="small"
+                    color={"error"}
+                >
+                    Remove
+                </SuiButton>
+            </SuiBox>
+        </SuiTypography>
+      ),
+
     },
     {
-      project: [logoInvesion, "Invesion"],
-      budget: (
+      name: (
         <SuiTypography variant="button" color="text" fontWeight="medium">
-          $5,000
+          Test Task #2
+        </SuiTypography>
+      ),
+      members: (
+        <SuiBox display="flex">
+            {
+            renderAuthors(
+            [
+                { image: team2, name: "Ryan Milly" },
+                { image: team3, name: "Nick Daniel" },
+                { image: team1, name: "Elena Morison" },
+                { image: team4, name: "Peterson" },
+            ]
+            )
+            }
+        </SuiBox>
+      ),
+      priority: (
+        <SuiTypography variant="caption" color="text" fontWeight="medium">
+            LOW
+        </SuiTypography>
+      ),
+      project: (
+        <SuiTypography variant="caption" color="text" fontWeight="medium">
+            project #2
         </SuiTypography>
       ),
       status: (
         <SuiTypography variant="caption" color="text" fontWeight="medium">
-          done
+            on hold
         </SuiTypography>
       ),
-      completion: <Completion value={100} color="success" />,
-      action,
+      completion: <Completion value={0} color="info" />,
+      Deadline: (
+        <SuiTypography variant="caption" color="text" fontWeight="medium">
+            16-Jul-2022
+        </SuiTypography>
+      ),
+      actions: (
+        <SuiTypography variant="caption" color="text" fontWeight="medium">
+            <SuiBox display="flex" flexDirection="column" gap="5px">
+                <SuiButton
+                    // onClick={}
+                    // variant="outlined"
+                    size="small"
+                    color={"info"}
+                >
+                    Edit
+                </SuiButton>
+                <SuiButton
+                    // onClick={}
+                    // variant="outlined"
+                    size="small"
+                    color={"error"}
+                >
+                    Remove
+                </SuiButton>
+            </SuiBox>
+        </SuiTypography>
+      ),
+
     },
     {
-      project: [logoJira, "Jira"],
-      budget: (
+      name: (
         <SuiTypography variant="button" color="text" fontWeight="medium">
-          $3,400
+          Test Task #3
+        </SuiTypography>
+      ),
+      members: (
+        <SuiBox display="flex">
+            {
+            renderAuthors(
+            [
+                { image: team4, name: "Peterson" },
+                { image: team1, name: "Elena Morison" },
+                { image: team3, name: "Nick Daniel" },
+                { image: team2, name: "Ryan Milly" },
+            ]
+            )
+            }
+        </SuiBox>
+      ),
+      priority: (
+        <SuiTypography variant="caption" color="text" fontWeight="medium">
+            MEDIUM
+        </SuiTypography>
+      ),
+      project: (
+        <SuiTypography variant="caption" color="text" fontWeight="medium">
+            project #3
         </SuiTypography>
       ),
       status: (
         <SuiTypography variant="caption" color="text" fontWeight="medium">
-          canceled
+            working
         </SuiTypography>
       ),
-      completion: <Completion value={30} color="error" />,
-      action,
-    },
-    {
-      project: [logoSlack, "Slack"],
-      budget: (
-        <SuiTypography variant="button" color="text" fontWeight="medium">
-          $1,400
-        </SuiTypography>
-      ),
-      status: (
+      completion: <Completion value={100} color="info" />,
+      Deadline: (
         <SuiTypography variant="caption" color="text" fontWeight="medium">
-          canceled
+          16-Jul-2022
         </SuiTypography>
       ),
-      completion: <Completion value={0} color="error" />,
-      action,
-    },
-    {
-      project: [logoWebDev, "Webdev"],
-      budget: (
-        <SuiTypography variant="button" color="text" fontWeight="medium">
-          $14,000
-        </SuiTypography>
-      ),
-      status: (
+      actions: (
         <SuiTypography variant="caption" color="text" fontWeight="medium">
-          working
+            <SuiBox display="flex" flexDirection="column" gap="5px">
+                <SuiButton
+                    // onClick={}
+                    // variant="outlined"
+                    size="small"
+                    color={"info"}
+                >
+                    Edit
+                </SuiButton>
+                <SuiButton
+                    // onClick={}
+                    // variant="outlined"
+                    size="small"
+                    color={"error"}
+                >
+                    Remove
+                </SuiButton>
+            </SuiBox>
         </SuiTypography>
       ),
-      completion: <Completion value={80} color="info" />,
-      action,
-    },
-    {
-      project: [logoXD, "Adobe XD"],
-      budget: (
-        <SuiTypography variant="button" color="text" fontWeight="medium">
-          $2,300
-        </SuiTypography>
-      ),
-      status: (
-        <SuiTypography variant="caption" color="text" fontWeight="medium">
-          done
-        </SuiTypography>
-      ),
-      completion: <Completion value={100} color="success" />,
-      action,
+
     },
   ],
 };
