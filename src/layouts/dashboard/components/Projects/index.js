@@ -24,6 +24,7 @@ import MenuItem from "@mui/material/MenuItem";
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
+import SuiButton from "components/SuiButton";
 
 // Soft UI Dashboard Materail-UI example components
 import Table from "examples/Tables/Table";
@@ -97,16 +98,75 @@ function Projects() {
                     { name: "name", align: "left" },
                     { name: "company", align: "left" },
                     { name: "phone", align: "left" },
+                    { name: "action", align: "left" },
                 ]
             } 
         
             rows={
                 [
-                    {name: "Nom client #1", company: "Company client #1", phone: "Phone client #1"},
-                    {name: "Nom client #2", company: "Company client #2", phone: "Phone client #2"},
-                    {name: "Nom client #3", company: "Company client #3", phone: "Phone client #3"},
-                    {name: "Nom client #4", company: "Company client #4", phone: "Phone client #4"},
-                    {name: "Nom client #5", company: "Company client #5", phone: "Phone client #5"},
+                    {name: "Nom client #1", company: "Company client #1", phone: "Phone client #1", 
+                    action: 
+                        <SuiBox display="flex" alignItems="right">
+                            <SuiButton
+                                to={""}
+                                variant="text"
+                                size="small"
+                                color={"info"}
+                            >
+                                Edit
+                            </SuiButton>
+                            <SuiButton
+                                to={""}
+                                variant="text"
+                                size="small"
+                                color={"error"}
+                            >
+                                Remove
+                            </SuiButton>
+                        </SuiBox>
+                    },
+                    {name: "Nom client #2", company: "Company client #2", phone: "Phone client #2", 
+                    action: 
+                        <SuiBox display="flex" alignItems="right">
+                            <SuiButton
+                                to={""}
+                                variant="text"
+                                size="small"
+                                color={"info"}
+                            >
+                                Edit
+                            </SuiButton>
+                            <SuiButton
+                                to={""}
+                                variant="text"
+                                size="small"
+                                color={"error"}
+                            >
+                                Remove
+                            </SuiButton>
+                        </SuiBox>
+                    },
+                    {name: "Nom client #3", company: "Company client #3", phone: "Phone client #3", 
+                    action: 
+                        <SuiBox display="flex" alignItems="right">
+                            <SuiButton
+                                to={""}
+                                variant="text"
+                                size="small"
+                                color={"info"}
+                            >
+                                Edit
+                            </SuiButton>
+                            <SuiButton
+                                to={""}
+                                variant="text"
+                                size="small"
+                                color={"error"}
+                            >
+                                Remove
+                            </SuiButton>
+                        </SuiBox>
+                    },
                 ]
             } 
         
