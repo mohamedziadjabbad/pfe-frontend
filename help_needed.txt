@@ -9,15 +9,15 @@ x settings -> edit project
 x add new project
 x sign in -> sign out
 
-- remove settings button
-- change attributes in team and projects tables
-- authors table -> users table
+x remove settings button
+x change attributes in team and projects tables
+x authors table -> users table
     - add user
-    - actions: edit and remove
+    x actions: edit and remove
 - projects table -> tasks table
     - add task
-    - actions: edit and remove
-- show users
+    x actions: edit and remove
+x show users
 DASHBOARD:
 - project table -> clients table
 - orders overview -> categories table

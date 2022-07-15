@@ -11,6 +11,10 @@ import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 
+import AddEditUser from "examples/SideMenu/AddEditUser";
+
+import React from "react";
+
 function Author({ image, name, email }) {
   return (
     <SuiBox display="flex" alignItems="center" px={1} py={0.5}>
@@ -60,19 +64,17 @@ const authorsTableData = {
         </SuiTypography>
       ),
       action: (
-        <SuiBox display="flex" flexDirection="column" gap="3px">
+        <SuiBox display="flex" flexDirection="column" gap="5px">
             <SuiButton
-                to={""}
+                // onClick={}
                 // variant="outlined"
                 size="small"
                 color={"info"}
             >
                 Edit
-            </SuiButton> 
-            <br />
-            {/* <br /> */}
+            </SuiButton>
             <SuiButton
-                to={""}
+                // onClick={}
                 // variant="outlined"
                 size="small"
                 color={"error"}
@@ -91,19 +93,17 @@ const authorsTableData = {
         </SuiTypography>
       ),
       action: (
-        <SuiBox display="flex" flexDirection="column" gap="3px">
+        <SuiBox display="flex" flexDirection="column" gap="5px">
             <SuiButton
-                to={""}
+                // onClick={}
                 // variant="outlined"
                 size="small"
                 color={"info"}
             >
                 Edit
-            </SuiButton> 
-            <br />
-            {/* <br /> */}
+            </SuiButton>
             <SuiButton
-                to={""}
+                // onClick={}
                 // variant="outlined"
                 size="small"
                 color={"error"}
@@ -112,7 +112,7 @@ const authorsTableData = {
             </SuiButton>
     </SuiBox>
       ),
-    },
+    },  
     {
       user: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
       role: <Function job="Manager" org="Organization" />,
@@ -122,29 +122,26 @@ const authorsTableData = {
         </SuiTypography>
       ),
       action: (
-        <SuiBox display="flex" flexDirection="column" gap="3px">
+        <SuiBox display="flex" flexDirection="column" gap="5px">
             <SuiButton
-                to={""}
+                // onClick={}
                 // variant="outlined"
                 size="small"
                 color={"info"}
             >
                 Edit
-            </SuiButton> 
-            <br />
-            {/* <br /> */}
+            </SuiButton>
             <SuiButton
-                to={""}
+                // onClick={}
                 // variant="outlined"
                 size="small"
                 color={"error"}
             >
                 Remove
             </SuiButton>
-    </SuiBox>
+         </SuiBox>
       ),
-    },
-   
+    },  
   ],
 };
 

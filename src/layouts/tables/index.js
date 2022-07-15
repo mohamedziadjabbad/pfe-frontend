@@ -61,7 +61,7 @@ function Tables() {
                     },
                 }}
                 >
-                <Table columns={columns} rows={rows} />
+                <Table columns={columns} rows={rows} controller={setUserSidePanel}/>
                 </SuiBox>
             </Card>
             </SuiBox>
@@ -79,7 +79,7 @@ function Tables() {
                 },
                 }}
             >
-                <Table columns={prCols} rows={prRows} />
+                <Table columns={prCols} rows={prRows} controller={setTaskSidePanel}/>
             </SuiBox>
             </Card>
         </SuiBox>
