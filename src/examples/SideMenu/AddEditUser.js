@@ -9,6 +9,9 @@ import SuiButton from "components/SuiButton";
 
 import React from "react";
 import ConfiguratorRoot from "examples/SideMenu/ConfiguratorRoot";
+
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
            
 const AddEditUser = ({display, setDisplay}) => {
 
@@ -48,31 +51,34 @@ const AddEditUser = ({display, setDisplay}) => {
 
             <SuiBox pt={1.25} pb={3} px={3}>
                 <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Title..." />
+                    <SuiInput placeholder="Username..." />
                 </SuiBox>    
                 <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Description..." />
+                    <SuiInput placeholder="Password..." />
                 </SuiBox>    
                 <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Start date..." />
+                    <SuiInput placeholder="First Name..." />
                 </SuiBox>    
                 <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Expected end date..." />
+                    <SuiInput placeholder="Last Name..." />
                 </SuiBox>    
                 <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="End date..." />
+                    <SuiInput placeholder="Phone..." />
                 </SuiBox>    
                 <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Client..." />
+                    <SuiInput placeholder="Email..." />
                 </SuiBox>    
-                <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Title..." />
-                </SuiBox>    
-                <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Total number of tasks..." />
-                </SuiBox>    
-                
-                
+                <Dropdown 
+                    style={{borderRadius: '50px'}}
+                    options={[
+                        <SuiTypography variant="caption" color="text" fontWeight="medium">role #1</SuiTypography>,
+                        <SuiTypography variant="caption" color="text" fontWeight="medium">role #2</SuiTypography>,
+                        <SuiTypography variant="caption" color="text" fontWeight="medium">role #3</SuiTypography>,
+                    ]} 
+                    value={""} 
+                    placeholder={<SuiTypography variant="caption" color="text" fontWeight="medium">Role</SuiTypography>}
+                />
+
                 <Divider />
 
                 <SuiBox mt={3} mb={2}>

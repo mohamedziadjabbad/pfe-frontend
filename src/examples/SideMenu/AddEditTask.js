@@ -9,6 +9,9 @@ import SuiButton from "components/SuiButton";
 
 import React from "react";
 import ConfiguratorRoot from "examples/SideMenu/ConfiguratorRoot";
+
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
            
 const AddEditUser = ({display, setDisplay}) => {
 
@@ -50,30 +53,53 @@ const AddEditUser = ({display, setDisplay}) => {
 
             <SuiBox pt={1.25} pb={3} px={3}>
                 <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Title..." />
-                </SuiBox>    
+                    <SuiInput placeholder="Name..." />
+                </SuiBox>   
                 <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Description..." />
-                </SuiBox>    
-                <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Start date..." />
-                </SuiBox>    
-                <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Expected end date..." />
-                </SuiBox>    
-                <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="End date..." />
-                </SuiBox>    
-                <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Client..." />
-                </SuiBox>    
-                <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Title..." />
-                </SuiBox>    
-                <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Total number of tasks..." />
-                </SuiBox>    
-                
+                    <SuiInput placeholder="Deadline..." />
+                </SuiBox> 
+
+                <Divider />
+
+                <SuiBox>
+                    <Dropdown 
+                        style={{borderRadius: '50px'}}
+                        options={[
+                            <SuiTypography variant="caption" color="text" fontWeight="medium">priority #1</SuiTypography>,
+                            <SuiTypography variant="caption" color="text" fontWeight="medium">priority #2</SuiTypography>,
+                            <SuiTypography variant="caption" color="text" fontWeight="medium">priority #3</SuiTypography>,
+                        ]} 
+                        value={""} 
+                        placeholder={<SuiTypography variant="caption" color="text" fontWeight="medium">Priority</SuiTypography>}
+                    />   
+                </SuiBox>
+                <br />
+                <SuiBox>
+                    <Dropdown 
+                        style={{borderRadius: '50px'}}
+                        options={[
+                            <SuiTypography variant="caption" color="text" fontWeight="medium">project #1</SuiTypography>,
+                            <SuiTypography variant="caption" color="text" fontWeight="medium">project #2</SuiTypography>,
+                            <SuiTypography variant="caption" color="text" fontWeight="medium">project #3</SuiTypography>,
+                        ]} 
+                        value={""} 
+                        placeholder={<SuiTypography variant="caption" color="text" fontWeight="medium">Project</SuiTypography>}
+                    />   
+                </SuiBox>
+                <br />
+                <SuiBox>
+                    <Dropdown 
+                        style={{borderRadius: '50px'}}
+                        options={[
+                            <SuiTypography variant="caption" color="text" fontWeight="medium">status #1</SuiTypography>,
+                            <SuiTypography variant="caption" color="text" fontWeight="medium">status #2</SuiTypography>,
+                            <SuiTypography variant="caption" color="text" fontWeight="medium">status #3</SuiTypography>,
+                        ]} 
+                        value={""} 
+                        placeholder={<SuiTypography variant="caption" color="text" fontWeight="medium">Status</SuiTypography>}
+                    />   
+                </SuiBox>
+                       
                 
                 <Divider />
 

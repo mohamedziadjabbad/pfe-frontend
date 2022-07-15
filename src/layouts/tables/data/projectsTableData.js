@@ -105,7 +105,7 @@ const projectsTableData = {
       completion: <Completion value={60} color="info" />,
       Deadline: (
         <SuiTypography variant="caption" color="text" fontWeight="medium">
-          working
+          18-Jul-2022
         </SuiTypography>
       ),
       actions: (
