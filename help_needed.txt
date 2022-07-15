@@ -12,11 +12,13 @@ x sign in -> sign out
 x remove settings button
 x change attributes in team and projects tables
 x authors table -> users table
-    - add user
+    x add user
     x actions: edit and remove
+    - functional edit button
 - projects table -> tasks table
-    - add task
+    x add task
     x actions: edit and remove
+    - functional edit button
 x show users
 DASHBOARD:
 - project table -> clients table
@@ -26,4 +28,4 @@ Duplicate configurator:
     x add/edit user
     x add/edit task
 
-- change graph labels keep fake data
+x change graph labels keep fake data
