@@ -89,22 +89,21 @@ TimelineItem.defaultProps = {
 
 // Typechecking props for the TimelineItem
 TimelineItem.propTypes = {
-  color: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "dark",
-    "light",
-  ]),
-  icon: PropTypes.node.isRequired,
+//   color: PropTypes.oneOf([
+//     "primary",
+//     "secondary",
+//     "info",
+//     "success",
+//     "warning",
+//     "error",
+//     "dark",
+//     "light",
+//   ]),
   title: PropTypes.string.isRequired,
-  dateTime: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  badges: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-  lastItem: PropTypes.bool,
+  dateTime: PropTypes.object.isRequired,
+//   description: PropTypes.string,
+//   badges: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+//   lastItem: PropTypes.bool,
 };
 
 export default TimelineItem;

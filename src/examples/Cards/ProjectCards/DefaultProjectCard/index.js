@@ -145,8 +145,7 @@ DefaultProjectCard.defaultProps = {
 
 // Typechecking props for the DefaultProjectCard
 DefaultProjectCard.propTypes = {
-  image: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   action: PropTypes.shape({
@@ -164,7 +163,7 @@ DefaultProjectCard.propTypes = {
       "white",
     ]).isRequired,
     label: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
   authors: PropTypes.arrayOf(PropTypes.object),
 };
 

@@ -31,8 +31,13 @@ import Table from "examples/Tables/Table";
 
 // Data
 import data from "layouts/dashboard/components/Projects/data";
+import React from "react";
+import AddEditClient from "examples/SideMenu/AddEditClients";
 
 function Projects() {
+
+    const [sidePanel, setSidePanel] = React.useState(false)
+
   const { columns, rows } = data();
   const [menu, setMenu] = useState(null);
 
@@ -62,11 +67,21 @@ function Projects() {
 
   return (
     <Card>
-      <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+      <SuiBox p={3}>
+        <SuiBox display="flex" justifyContent="space-between" alignItems="center">
+            <SuiTypography variant="h6" gutterBottom>
+                Clients
+            </SuiTypography>
+            <SuiButton
+                variant="outlined"
+                size="small"
+                color={"info"}
+                onClick={ ()=>{setSidePanel(true)} }
+                >
+                Add Client
+            </SuiButton>
+        </SuiBox>
         <SuiBox>
-          <SuiTypography variant="h6" gutterBottom>
-            Clients
-          </SuiTypography>
           <SuiBox display="flex" alignItems="center" lineHeight={0}>
             <Icon
               sx={{
@@ -112,6 +127,7 @@ function Projects() {
                                 variant="text"
                                 size="small"
                                 color={"info"}
+                                onClick={ ()=>{setSidePanel(true)} }
                             >
                                 Edit
                             </SuiButton>
@@ -133,6 +149,7 @@ function Projects() {
                                 variant="text"
                                 size="small"
                                 color={"info"}
+                                onClick={ ()=>{setSidePanel(true)} }
                             >
                                 Edit
                             </SuiButton>
@@ -154,6 +171,7 @@ function Projects() {
                                 variant="text"
                                 size="small"
                                 color={"info"}
+                                onClick={ ()=>{setSidePanel(true)} }
                             >
                                 Edit
                             </SuiButton>
@@ -172,6 +190,7 @@ function Projects() {
         
         />
       </SuiBox>
+      <AddEditClient display={sidePanel} setDisplay={setSidePanel}/>
     </Card>
   );
 }

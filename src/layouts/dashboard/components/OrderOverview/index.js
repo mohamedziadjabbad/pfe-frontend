@@ -21,16 +21,33 @@ import SuiButton from "components/SuiButton";
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
 
+import React from "react";
+
 // Soft UI Dashboard React examples
 import TimelineItem from "examples/Timeline/TimelineItem";
 
+import AddEditCategory from "examples/SideMenu/AddEditCategories";
+
 function OrdersOverview() {
+
+    const [sidePanel, setSidePanel] = React.useState(false)
+
   return (
     <Card className="h-100">
       <SuiBox pt={3} px={3}>
-        <SuiTypography variant="h6" fontWeight="medium">
-            Categories
-        </SuiTypography>
+        <SuiBox display="flex" justifyContent="space-between" alignItems="center">
+            <SuiTypography variant="h6" gutterBottom>
+                Categories
+            </SuiTypography>
+            <SuiButton
+                variant="outlined"
+                size="small"
+                color={"info"}
+                onClick={ ()=>{setSidePanel(true)} }
+                >
+                Add Category
+            </SuiButton>
+        </SuiBox>
       </SuiBox>
       <SuiBox p={2}>
         <TimelineItem
@@ -42,6 +59,7 @@ function OrdersOverview() {
                         variant="text"
                         size="small"
                         color={"info"}
+                        onClick={ ()=>{setSidePanel(true)} }
                     >
                         Edit
                     </SuiButton>
@@ -65,6 +83,7 @@ function OrdersOverview() {
                         variant="text"
                         size="small"
                         color={"info"}
+                        onClick={ ()=>{setSidePanel(true)} }
                     >
                         Edit
                     </SuiButton>
@@ -88,6 +107,7 @@ function OrdersOverview() {
                         variant="text"
                         size="small"
                         color={"info"}
+                        onClick={ ()=>{setSidePanel(true)} }
                     >
                         Edit
                     </SuiButton>
@@ -103,6 +123,7 @@ function OrdersOverview() {
             }
         />
       </SuiBox>
+      <AddEditCategory display={sidePanel} setDisplay={setSidePanel}/>
     </Card>
   );
 }
