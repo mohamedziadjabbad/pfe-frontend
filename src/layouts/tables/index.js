@@ -49,7 +49,7 @@ function Tables() {
             <SuiBox mb={3}>
             <Card>
                 <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-                <SuiTypography variant="h6">Authors table</SuiTypography>
+                <SuiTypography variant="h6">Users</SuiTypography>
                 </SuiBox>
                 <SuiBox
                 sx={{
@@ -67,7 +67,7 @@ function Tables() {
             </SuiBox>
             <Card>
             <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-                <SuiTypography variant="h6">Projects table</SuiTypography>
+                <SuiTypography variant="h6">Tasks</SuiTypography>
             </SuiBox>
             <SuiBox
                 sx={{

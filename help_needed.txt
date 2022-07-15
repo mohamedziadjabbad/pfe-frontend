@@ -8,9 +8,8 @@ x VIEW PROJECT into -> delete project
 x settings -> edit project
 x add new project
 x sign in -> sign out
-x remove settings button
 
-
+- remove settings button
 - change attributes in team and projects tables
 - authors table -> users table
     - add user
@@ -24,7 +23,7 @@ DASHBOARD:
 - orders overview -> categories table
 
 Duplicate configurator:
-    - add/edit user
-    - add/edit task
+    x add/edit user
+    x add/edit task
 
 - change graph labels keep fake data

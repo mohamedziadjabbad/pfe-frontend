@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
+import SuiButton from "components/SuiButton";
 import SuiTypography from "components/SuiTypography";
 import SuiAvatar from "components/SuiAvatar";
 import SuiBadge from "components/SuiBadge";
@@ -43,152 +44,107 @@ function Function({ job, org }) {
 
 const authorsTableData = {
   columns: [
-    { name: "author", align: "left" },
-    { name: "function", align: "left" },
-    { name: "status", align: "center" },
-    { name: "employed", align: "center" },
+    { name: "user", align: "left" },
+    { name: "role", align: "left" },
+    { name: "phone", align: "left" },
     { name: "action", align: "center" },
   ],
 
   rows: [
     {
-      author: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
-      function: <Function job="Manager" org="Organization" />,
-      status: (
-        <SuiBadge variant="gradient" badgeContent="online" color="success" size="xs" container />
-      ),
-      employed: (
+      user: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
+      role: <Function job="Manager" org="Organization" />,
+      phone: (
         <SuiTypography variant="caption" color="secondary" fontWeight="medium">
-          23/04/18
+            +212-0625-125212
         </SuiTypography>
       ),
       action: (
-        <SuiTypography
-          component="a"
-          href="#"
-          variant="caption"
-          color="secondary"
-          fontWeight="medium"
-        >
-          Edit
+        <SuiBox display="flex" flexDirection="column" gap="3px">
+            <SuiButton
+                to={""}
+                // variant="outlined"
+                size="small"
+                color={"info"}
+            >
+                Edit
+            </SuiButton> 
+            <br />
+            {/* <br /> */}
+            <SuiButton
+                to={""}
+                // variant="outlined"
+                size="small"
+                color={"error"}
+            >
+                Remove
+            </SuiButton>
+    </SuiBox>
+      ),
+    },  
+    {
+      user: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
+      role: <Function job="Manager" org="Organization" />,
+      phone: (
+        <SuiTypography variant="caption" color="secondary" fontWeight="medium">
+            +212-0625-125212
         </SuiTypography>
+      ),
+      action: (
+        <SuiBox display="flex" flexDirection="column" gap="3px">
+            <SuiButton
+                to={""}
+                // variant="outlined"
+                size="small"
+                color={"info"}
+            >
+                Edit
+            </SuiButton> 
+            <br />
+            {/* <br /> */}
+            <SuiButton
+                to={""}
+                // variant="outlined"
+                size="small"
+                color={"error"}
+            >
+                Remove
+            </SuiButton>
+    </SuiBox>
       ),
     },
     {
-      author: <Author image={team3} name="Alexa Liras" email="alexa@creative-tim.com" />,
-      function: <Function job="Programator" org="Developer" />,
-      status: (
-        <SuiBadge variant="gradient" badgeContent="offline" color="secondary" size="xs" container />
-      ),
-      employed: (
+      user: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
+      role: <Function job="Manager" org="Organization" />,
+      phone: (
         <SuiTypography variant="caption" color="secondary" fontWeight="medium">
-          11/01/19
+            +212-0625-125212
         </SuiTypography>
       ),
       action: (
-        <SuiTypography
-          component="a"
-          href="#"
-          variant="caption"
-          color="secondary"
-          fontWeight="medium"
-        >
-          Edit
-        </SuiTypography>
+        <SuiBox display="flex" flexDirection="column" gap="3px">
+            <SuiButton
+                to={""}
+                // variant="outlined"
+                size="small"
+                color={"info"}
+            >
+                Edit
+            </SuiButton> 
+            <br />
+            {/* <br /> */}
+            <SuiButton
+                to={""}
+                // variant="outlined"
+                size="small"
+                color={"error"}
+            >
+                Remove
+            </SuiButton>
+    </SuiBox>
       ),
     },
-    {
-      author: <Author image={team4} name="Laurent Perrier" email="laurent@creative-tim.com" />,
-      function: <Function job="Executive" org="Projects" />,
-      status: (
-        <SuiBadge variant="gradient" badgeContent="online" color="success" size="xs" container />
-      ),
-      employed: (
-        <SuiTypography variant="caption" color="secondary" fontWeight="medium">
-          19/09/17
-        </SuiTypography>
-      ),
-      action: (
-        <SuiTypography
-          component="a"
-          href="#"
-          variant="caption"
-          color="secondary"
-          fontWeight="medium"
-        >
-          Edit
-        </SuiTypography>
-      ),
-    },
-    {
-      author: <Author image={team3} name="Michael Levi" email="michael@creative-tim.com" />,
-      function: <Function job="Programator" org="Developer" />,
-      status: (
-        <SuiBadge variant="gradient" badgeContent="online" color="success" size="xs" container />
-      ),
-      employed: (
-        <SuiTypography variant="caption" color="secondary" fontWeight="medium">
-          24/12/08
-        </SuiTypography>
-      ),
-      action: (
-        <SuiTypography
-          component="a"
-          href="#"
-          variant="caption"
-          color="secondary"
-          fontWeight="medium"
-        >
-          Edit
-        </SuiTypography>
-      ),
-    },
-    {
-      author: <Author image={team2} name="Richard Gran" email="richard@creative-tim.com" />,
-      function: <Function job="Manager" org="Executive" />,
-      status: (
-        <SuiBadge variant="gradient" badgeContent="offline" color="secondary" size="xs" container />
-      ),
-      employed: (
-        <SuiTypography variant="caption" color="secondary" fontWeight="medium">
-          04/10/21
-        </SuiTypography>
-      ),
-      action: (
-        <SuiTypography
-          component="a"
-          href="#"
-          variant="caption"
-          color="secondary"
-          fontWeight="medium"
-        >
-          Edit
-        </SuiTypography>
-      ),
-    },
-    {
-      author: <Author image={team4} name="Miriam Eric" email="miriam@creative-tim.com" />,
-      function: <Function job="Programtor" org="Developer" />,
-      status: (
-        <SuiBadge variant="gradient" badgeContent="offline" color="secondary" size="xs" container />
-      ),
-      employed: (
-        <SuiTypography variant="caption" color="secondary" fontWeight="medium">
-          14/09/20
-        </SuiTypography>
-      ),
-      action: (
-        <SuiTypography
-          component="a"
-          href="#"
-          variant="caption"
-          color="secondary"
-          fontWeight="medium"
-        >
-          Edit
-        </SuiTypography>
-      ),
-    },
+   
   ],
 };
 
