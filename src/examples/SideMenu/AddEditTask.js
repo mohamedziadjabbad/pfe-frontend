@@ -10,9 +10,9 @@ import SuiButton from "components/SuiButton";
 import React from "react";
 import ConfiguratorRoot from "examples/SideMenu/ConfiguratorRoot";
            
-const AddEditUser = ({display}) => {
+const AddEditUser = ({display, setDisplay}) => {
 
-    const [isVisible, setIsVisible] = React.useState(false);
+    // const [isVisible, setIsVisible] = React.useState(false);
 
     return ( 
         <ConfiguratorRoot variant="permanent" ownerState={ display }>
@@ -40,7 +40,7 @@ const AddEditUser = ({display}) => {
                     cursor: "pointer",
                     mt: 2,
                 })}
-                onClick={()=>setIsVisible(false)}
+                onClick={()=>setDisplay(false)}
                 >
                 close
                 </Icon>

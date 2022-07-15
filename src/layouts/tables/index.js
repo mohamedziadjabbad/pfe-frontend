@@ -19,6 +19,7 @@ import Card from "@mui/material/Card";
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
+import SuiButton from "components/SuiButton";
 
 // Soft UI Dashboard React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -50,6 +51,14 @@ function Tables() {
             <Card>
                 <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
                 <SuiTypography variant="h6">Users</SuiTypography>
+                <SuiButton
+                    onClick={ ()=>{setUserSidePanel(true)} }
+                    variant="outlined"
+                    size="small"
+                    color={"info"}
+                >
+                    Add user
+                </SuiButton>
                 </SuiBox>
                 <SuiBox
                 sx={{
@@ -68,6 +77,14 @@ function Tables() {
             <Card>
             <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
                 <SuiTypography variant="h6">Tasks</SuiTypography>
+                <SuiButton
+                    onClick={ ()=>{setTaskSidePanel(true)} }
+                    variant="outlined"
+                    size="small"
+                    color={"info"}
+                >
+                    Add Task
+                </SuiButton>
             </SuiBox>
             <SuiBox
                 sx={{
@@ -83,8 +100,9 @@ function Tables() {
             </SuiBox>
             </Card>
         </SuiBox>
-        <AddEditUser display={userSidePanel}/>
-        <AddEditTask display={taskSidePanel}/>
+
+        <AddEditUser display={userSidePanel} setDisplay={setUserSidePanel}/>
+        <AddEditTask display={taskSidePanel} setDisplay={setTaskSidePanel}/>
     <Footer />
     </DashboardLayout>
   );
