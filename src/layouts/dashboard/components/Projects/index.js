@@ -64,7 +64,7 @@ function Projects() {
       <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
         <SuiBox>
           <SuiTypography variant="h6" gutterBottom>
-            Projects
+            Clients
           </SuiTypography>
           <SuiBox display="flex" alignItems="center" lineHeight={0}>
             <Icon
@@ -77,16 +77,10 @@ function Projects() {
               done
             </Icon>
             <SuiTypography variant="button" fontWeight="regular" color="text">
-              &nbsp;<strong>30 done</strong> this month
+              &nbsp;<strong>3</strong> clients
             </SuiTypography>
           </SuiBox>
         </SuiBox>
-        <SuiBox color="text" px={2}>
-          <Icon sx={{ cursor: "pointer", fontWeight: "bold" }} fontSize="small" onClick={openMenu}>
-            more_vert
-          </Icon>
-        </SuiBox>
-        {renderMenu}
       </SuiBox>
       <SuiBox
         sx={{
@@ -98,7 +92,25 @@ function Projects() {
           },
         }}
       >
-        <Table columns={columns} rows={rows} />
+        <Table columns={
+                [
+                    { name: "name", align: "left" },
+                    { name: "company", align: "left" },
+                    { name: "phone", align: "left" },
+                ]
+            } 
+        
+            rows={
+                [
+                    {name: "Nom client #1", company: "Company client #1", phone: "Phone client #1"},
+                    {name: "Nom client #2", company: "Company client #2", phone: "Phone client #2"},
+                    {name: "Nom client #3", company: "Company client #3", phone: "Phone client #3"},
+                    {name: "Nom client #4", company: "Company client #4", phone: "Phone client #4"},
+                    {name: "Nom client #5", company: "Company client #5", phone: "Phone client #5"},
+                ]
+            } 
+        
+        />
       </SuiBox>
     </Card>
   );
