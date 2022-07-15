@@ -95,7 +95,7 @@ return (
                 px={3}
             >
                 <SuiBox>
-                    <SuiTypography variant="h5">Create/Edit project</SuiTypography>
+                    <SuiTypography variant="h5">CONFIGURATOR MENU, THIS SOULDN'T BE USED</SuiTypography>
                     <SuiTypography variant="body2" color="text">
                         Fill the form bellow.
                     </SuiTypography>

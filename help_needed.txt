@@ -21,11 +21,19 @@ x authors table -> users table
     - functional edit button
 x show users
 DASHBOARD:
-- project table -> clients table
-- orders overview -> categories table
+x project table -> clients table
+x orders overview -> categories table
 
 Duplicate configurator:
     x add/edit user
     x add/edit task
 
 x change graph labels keep fake data
+
+X font weight in projects attributes
+X functional edit buttons in projects
+o fix graph bug
+
+- functional edit button in Tables page
+- Finish Task button
+

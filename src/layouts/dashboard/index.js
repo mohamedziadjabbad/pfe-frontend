@@ -53,15 +53,17 @@ import team4 from "assets/images/team-4.jpg";
 import Card from "@mui/material/Card";
 import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
 import PlaceholderCard from "examples/Cards/PlaceholderCard";
+import SuiButton from "components/SuiButton";
 
+import AddEditProject from "examples/SideMenu/AddEditProject";
 
-import { useSoftUIController, setMiniSidenav, setOpenConfigurator } from "context";
+import React from "react";
+
 
 function Dashboard() {
     const navigation = useNavigate();
     const { isLogged } = useSelector((state) => state.user);
-    const { size } = typography;
-    const { chart, items } = reportsBarChartData;
+
 
 
     useEffect(() => {
@@ -70,11 +72,7 @@ function Dashboard() {
         }
     }, [isLogged]);
 
-    const [controller, dispatch] = useSoftUIController();
-    const { miniSidenav, direction, layout, openConfigurator, sidenavColor } = controller;
-    const handleToggleSideMenu = () => {
-        setOpenConfigurator(dispatch, !openConfigurator);
-    }
+    const [sidePanel, setSidePanel] = React.useState(false)
     
     return (
     <DashboardLayout>
@@ -118,33 +116,14 @@ function Dashboard() {
         </SuiBox>
 
         <SuiBox mb={3}>
-            <Grid item xs={12} lg={12}>
-                <GradientLineChart
-                title="Opened and Closed tasks over time"
-                height="20.25rem"
-                chart={gradientLineChartData}
-                />
-            </Grid>
-        </SuiBox>
-        <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={8}>
-            <Projects />
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-            <OrderOverview />
-            </Grid>
-        </Grid>
-        </SuiBox>
-
-        <SuiBox mb={3}>
             <Card>
                 <SuiBox pt={2} px={2}>
-                    <SuiBox mb={0.5}>
-                    <SuiTypography variant="h6" fontWeight="medium">
+                    <SuiBox pt={2} px={2} mb={0.5}>
+                    <SuiTypography variant="h3" fontWeight="medium" color="info">
                         Projects
                     </SuiTypography>
                     </SuiBox>
-                    <SuiBox mb={1}>
+                    <SuiBox mb={1} pt={0} px={2.5}>
                     <SuiTypography variant="button" fontWeight="regular" color="text">
                         Liste des projets:
                     </SuiTypography>
@@ -168,6 +147,27 @@ function Dashboard() {
                                 client="Random client #1"
                                 numberOfTasks="10"
                                 completedTasks="8"
+                                action={
+                                    <SuiBox display="flex" justifyContent="space-between" alignItems="center">
+                                        <SuiButton
+                                            to={""}
+                                            variant="outlined"
+                                            size="small"
+                                            color={"info"}
+                                            onClick={ ()=>{setSidePanel(true)} }
+                                        >
+                                            Edit
+                                        </SuiButton>
+                                        <SuiButton
+                                            to={""}
+                                            variant="outlined"
+                                            size="small"
+                                            color={"error"}
+                                        >
+                                            Remove
+                                        </SuiButton>
+                                    </SuiBox>
+                                }
                             />
                         </Grid>
                         <Grid item xs={12} md={6} xl={3}>
@@ -186,6 +186,27 @@ function Dashboard() {
                                 client="Random client #2"
                                 numberOfTasks="20"
                                 completedTasks="20"
+                                action={
+                                    <SuiBox display="flex" justifyContent="space-between" alignItems="center">
+                                        <SuiButton
+                                            to={""}
+                                            variant="outlined"
+                                            size="small"
+                                            color={"info"}
+                                            onClick={ ()=>{setSidePanel(true)} }
+                                        >
+                                            Edit
+                                        </SuiButton>
+                                        <SuiButton
+                                            to={""}
+                                            variant="outlined"
+                                            size="small"
+                                            color={"error"}
+                                        >
+                                            Remove
+                                        </SuiButton>
+                                    </SuiBox>
+                                }
                             />
                         </Grid>
                         <Grid item xs={12} md={6} xl={3}>
@@ -204,9 +225,30 @@ function Dashboard() {
                                 client="Random client #3"
                                 numberOfTasks="42"
                                 completedTasks="8"
+                                action={
+                                    <SuiBox display="flex" justifyContent="space-between" alignItems="center">
+                                        <SuiButton
+                                            to={""}
+                                            variant="outlined"
+                                            size="small"
+                                            color={"info"}
+                                            onClick={ ()=>{setSidePanel(true)} }
+                                        >
+                                            Edit
+                                        </SuiButton>
+                                        <SuiButton
+                                            to={""}
+                                            variant="outlined"
+                                            size="small"
+                                            color={"error"}
+                                        >
+                                            Remove
+                                        </SuiButton>
+                                    </SuiBox>
+                                }
                             />
                         </Grid>
-                        <Grid item xs={12} md={6} xl={3} onClick={handleToggleSideMenu} style={{cursor: 'pointer'}}>
+                        <Grid item xs={12} md={6} xl={3} onClick={()=>{setSidePanel(true)}} style={{cursor: 'pointer'}}>
                             <PlaceholderCard title={{ variant: "h5", text: "New project" }} outlined />
                         </Grid>
                         
@@ -214,6 +256,29 @@ function Dashboard() {
                 </SuiBox>
             </Card>
         </SuiBox>
+
+
+        <Grid container spacing={3}>
+            <Grid item xs={12} md={6} lg={8}>
+            <Projects />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+            <OrderOverview />
+            </Grid>
+        </Grid>
+        </SuiBox>
+
+        <SuiBox mb={3}>
+            <Grid item xs={15} lg={15}>
+                <GradientLineChart
+                title="Opened and Closed tasks over time"
+                height="20rem"
+                chart={gradientLineChartData}
+                />
+            </Grid>
+        </SuiBox>
+
+        <AddEditProject display={sidePanel} setDisplay={setSidePanel}/>
 
         <Footer />
     </DashboardLayout>

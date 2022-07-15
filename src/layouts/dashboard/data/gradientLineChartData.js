@@ -19,12 +19,12 @@ const gradientLineChartData = {
     {
       label: "Total opened tasks",
       color: "dark",
-      data: [50, 40, 30, 220, 500, 250, 400, 230, 500],
+      data: [5, 12, 3, 22, 5, 25, 4, 2, 5],
     },
     {
       label: "Total closed tasks",
       color: "info",
-      data: [30, 40, 20, 140, 290, 230, 340, 180, 500],
+      data: [3, 4, 2, 14, 2, 23, 3, 1, 5],
     },
   ],
 };
