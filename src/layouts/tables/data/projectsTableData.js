@@ -15,7 +15,7 @@ import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 
-function Completion({ value, color }) {
+export function Completion({ value, color }) {
   return (
     <SuiBox display="flex" alignItems="center">
       <SuiTypography variant="caption" color="text" fontWeight="medium">
@@ -28,7 +28,7 @@ function Completion({ value, color }) {
   );
 }
 
-const renderAuthors = (authors) => authors.map(({ image: media, name }) => (
+export const renderAuthors = (authors) => authors.map(({ image: media, name }) => (
     <Tooltip key={name} title={name} placement="bottom">
       <SuiAvatar
         src={media}

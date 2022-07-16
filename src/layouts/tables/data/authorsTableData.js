@@ -13,9 +13,10 @@ import team4 from "assets/images/team-4.jpg";
 
 import AddEditUser from "examples/SideMenu/AddEditUser";
 
+
 import React from "react";
 
-function Author({ image, name, email }) {
+export function Author({ image, name, email }) {
   return (
     <SuiBox display="flex" alignItems="center" px={1} py={0.5}>
       <SuiBox mr={2}>
@@ -33,7 +34,7 @@ function Author({ image, name, email }) {
   );
 }
 
-function Function({ job, org }) {
+export function Function({ job, org }) {
   return (
     <SuiBox display="flex" flexDirection="column">
       <SuiTypography variant="caption" fontWeight="medium" color="text">
