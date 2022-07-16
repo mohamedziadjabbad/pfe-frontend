@@ -38,4 +38,5 @@ X functional edit buttons in projects
 o fix graph bug
 - functional edit button in Tables page
 - Finish Task button
-
+- Add page for project details (name, tasks, assigned members)
+- Chat menu
