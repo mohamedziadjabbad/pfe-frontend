@@ -6,6 +6,10 @@ import { serverUrl } from "config/server";
 const initialState = {
     user: {},
     token: "",
+    users: [],
+    roles: [],
+    categories: [],
+    tasks: [],
     isLogged: false,
     userNotFound: false,
 };
@@ -28,24 +32,31 @@ export const userSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        // builder.addCase(userAuthentication.pending, (state) => {
-        //     state.loading = true;
-        // });
-        // builder.addCase(userAuthentication.fulfilled, (state, action) => {
-        //     state.user = action.payload;
-        //     state.token = action.payload.jwt;
-        //     state.userNotFound = false;
-        //     state.loading = false;
-        // });
-        // builder.addCase(userAuthentication.rejected, (state) => {
-        //     state.loading = false;
+        builder.addCase(getUsers.fulfilled, (state, action) => {
+            state.users = action.payload;
+        });
+
+        builder.addCase(getTasks.fulfilled, (state, action) => {
+            state.tasks = action.payload;
+        });
+
+        builder.addCase(getRoles.fulfilled, (state, action) => {
+            state.roles = action.payload;
+        });
+
+        builder.addCase(getCategories.fulfilled, (state, action) => {
+            state.categories = action.payload;
+        });
+
+        // builder.addCase(getUsers.fulfilled, (state, action) => {
+        //     state.users = action.payload;
         // });
     },
 });
 
 export const userAuthentication = createAsyncThunk(
     "user/authentication",
-    async ({ username, password, navigation }, { dispatch }) => {
+    async ({ username, password }, { dispatch }) => {
         try {
             await axios
                 .post(`${serverUrl}/users/signin`, {
@@ -54,7 +65,6 @@ export const userAuthentication = createAsyncThunk(
                 })
                 .then((res) => {
                     if (res.status === 200) {
-                        console.log(res.data.jwt);
                         dispatch(setUserNotFound(false));
                         dispatch(setToken(res.data.jwt));
                         dispatch(setUser(res.data));
@@ -64,8 +74,110 @@ export const userAuthentication = createAsyncThunk(
         } catch (e) {
             if (e.response.status === 401) {
                 dispatch(setUserNotFound(true));
+                dispatch(setIsLogged(false));
+                dispatch(setToken(""));
             }
             if (e.response.status === 403) {
+                dispatch(setIsLogged(false));
+                dispatch(setToken(""));
+            }
+        }
+    }
+);
+
+export const getUsers = createAsyncThunk(
+    "user/getUsers",
+    async (device, { dispatch, getState }) => {
+        const { token } = getState().user;
+        try {
+            await axios
+                .get(`${serverUrl}/users`, { headers: { Authorization: `Bearer ${token}` } })
+                .then((res) => {
+                    return res.data;
+                });
+        } catch (e) {
+            if (e.response.status === 401) {
+                dispatch(setUserNotFound(true));
+                dispatch(setIsLogged(false));
+                dispatch(setToken(""));
+            }
+            if (e.response.status === 403) {
+                dispatch(setToken(""));
+                dispatch(setIsLogged(false));
+            }
+        }
+    }
+);
+
+export const getRoles = createAsyncThunk(
+    "user/getRoles",
+    async (device, { dispatch, getState }) => {
+        const { token } = getState().user;
+        try {
+            await axios
+                .get(`${serverUrl}/roles`, { headers: { Authorization: `Bearer ${token}` } })
+                .then((res) => {
+                    return res.data;
+                });
+        } catch (e) {
+            if (e.response.status === 401) {
+                dispatch(setUserNotFound(true));
+                dispatch(setIsLogged(false));
+                dispatch(setToken(""));
+            }
+            if (e.response.status === 403) {
+                dispatch(setToken(""));
+                dispatch(setIsLogged(false));
+            }
+        }
+    }
+);
+
+export const getTasks = createAsyncThunk(
+    "user/getTasks",
+    async (device, { dispatch, getState }) => {
+        const { token } = getState().user;
+        try {
+            await axios
+                .get(`${serverUrl}/task`, { headers: { Authorization: `Bearer ${token}` } })
+                .then((res) => {
+                    console.log(res.data);
+                    return res.data;
+                });
+        } catch (e) {
+            if (e.response.status === 401) {
+                dispatch(setUserNotFound(true));
+                dispatch(setIsLogged(false));
+                dispatch(setToken(""));
+            }
+            if (e.response.status === 403) {
+                dispatch(setToken(""));
+                dispatch(setIsLogged(false));
+            }
+        }
+    }
+);
+
+export const getCategories = createAsyncThunk(
+    "user/getCategories",
+    async (device, { dispatch, getState }) => {
+        const { token } = getState().user;
+        console.log(token);
+        try {
+            await axios
+                .get(`${serverUrl}/categorie`, { headers: { Authorization: `Bearer ${token}` } })
+                .then((res) => {
+                    console.log(res.data);
+                    return res.data;
+                });
+        } catch (e) {
+            if (e.response.status === 401) {
+                dispatch(setUserNotFound(true));
+                dispatch(setIsLogged(false));
+                dispatch(setToken(""));
+            }
+            if (e.response.status === 403) {
+                dispatch(setToken(""));
                 dispatch(setIsLogged(false));
             }
         }
