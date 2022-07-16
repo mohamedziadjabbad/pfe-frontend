@@ -35,9 +35,10 @@ x change graph labels keep fake data
 X font weight in projects attributes
 X functional edit buttons in projects
 
-- functional edit button in Tables page
-- Finish Task button
 - Add page for project details (name, tasks, assigned members)
 - Chat menu
-o fix graph bug
 - change auth to true in route
+- hide projects from sideNav
+x functional edit button in Tables page
+x Finish Task button
+o fix graph bug
