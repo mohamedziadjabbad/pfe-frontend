@@ -15,6 +15,7 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import Card from "@mui/material/Card";
+import Grid from "@mui/material/Grid";
 
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
@@ -22,6 +23,7 @@ import SuiTypography from "components/SuiTypography";
 import SuiButton from "components/SuiButton";
 
 // Soft UI Dashboard React examples
+import MiniStatisticsCard from "examples/Cards/StatisticsCards/MiniStatisticsCard";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
@@ -57,6 +59,42 @@ function Tables() {
   return (
     <DashboardLayout>
         <DashboardNavbar />
+        <SuiBox mb={3}>
+                <Grid container spacing={3}>
+                <Grid item xs={12} sm={6} xl={3}>
+                    <MiniStatisticsCard
+                        title={{ text: "Name" }}
+                        count="Project Name"
+                        // percentage={{ color: "success", text: "+55%" }}
+                        icon={{ color: "info", component: "support" }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6} xl={3}>
+                    <MiniStatisticsCard
+                        title={{ text: "Active tasks" }}
+                        count="3"
+                        // percentage={{ color: "success", text: "+3%" }}
+                        icon={{ color: "info", component: "public" }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6} xl={3}>
+                    <MiniStatisticsCard
+                    title={{ text: "Members" }}
+                    count="2"
+                    // percentage={{ color: "error", text: "-2%" }}
+                    icon={{ color: "info", component: "emoji_events" }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6} xl={3}>
+                    <MiniStatisticsCard
+                        title={{ text: "Deadline" }}
+                        count="16-Jul-2022"
+                        // percentage={{ color: "success", text: "+5%" }}
+                        icon={{ color: "info", component: "shopping_cart" }}
+                    />
+                </Grid>
+                </Grid>
+            </SuiBox>
         <SuiBox py={3}>
             <SuiBox mb={3}>
             <Card>
@@ -172,7 +210,7 @@ function Tables() {
                         ),
                         status: (
                           <SuiTypography variant="caption" color="text" fontWeight="medium">
-                              working
+                              WORKING
                           </SuiTypography>
                         ),
                         completion: <Completion value={60} color="info" />,
