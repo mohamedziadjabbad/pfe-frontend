@@ -41,7 +41,7 @@ import Tables from "layouts/tables";
 import Billing from "layouts/billing";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
-import SignUp from "layouts/authentication/sign-up";
+import Project from "layouts/project";
 
 // Soft UI Dashboard React icons
 import Shop from "examples/Icons/Shop";
@@ -49,7 +49,6 @@ import Office from "examples/Icons/Office";
 import Document from "examples/Icons/Document";
 import SpaceShip from "examples/Icons/SpaceShip";
 import CustomerSupport from "examples/Icons/CustomerSupport";
-import CreditCard from "examples/Icons/CreditCard";
 
 const routes = [
     {
@@ -95,11 +94,11 @@ const routes = [
     },
     {
         type: "collapse",
-        name: "Create User",
-        key: "sign-up",
-        route: "/authentication/sign-up",
+        name: "Project",
+        key: "project",
+        route: "/project",
         icon: <SpaceShip size="12px" />,
-        component: <SignUp />,
+        component: <Project />,
         noCollapse: true,
         auth: false,
     },

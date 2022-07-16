@@ -13,8 +13,6 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-// react-router-dom components
-import { Link } from "react-router-dom";
 
 // prop-types is a library for typechecking of props
 import PropTypes, { number } from "prop-types";
@@ -31,6 +29,9 @@ import SuiButton from "components/SuiButton";
 import SuiAvatar from "components/SuiAvatar";
 
 import SuiProgress from "components/SuiProgress";
+
+import { Link, useNavigate } from "react-router-dom";
+
 
 function DefaultProjectCard({ title, description, startDate, endDate, expectedEndDate, authors, client, numberOfTasks, completedTasks, action }) {
   const renderAuthors = authors.map(({ image: media, name }) => (
@@ -53,6 +54,11 @@ function DefaultProjectCard({ title, description, startDate, endDate, expectedEn
     </Tooltip>
   ));
 
+    const navigation = useNavigate();
+    const redirectToProjectPage = () => {
+        navigation("/project");
+    }
+
   return (
     <Card
       sx={{
@@ -61,15 +67,12 @@ function DefaultProjectCard({ title, description, startDate, endDate, expectedEn
         backgroundColor: "transparent",
         boxShadow: "none",
         overflow: "visible",
-        // borderColor: "black",
-        // borderWidth: "1px",
-        // padding: "5px",
-        // borderRadius: "5px",
+        cursor: "pointer",
     }}
     >
 
 
-    <SuiBox pt={3} px={0.5}>
+    <SuiBox pt={3} px={0.5} onClick={redirectToProjectPage}>
         <SuiBox mb={3} lineHeight={0}>
             <SuiTypography variant="button" fontWeight="regular" color="text">
                 <h3 color="info">{title}</h3> <br />
