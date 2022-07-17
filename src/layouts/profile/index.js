@@ -51,51 +51,59 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 
 import { useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getTeams } from "stores/user";
 
 function Overview() {
+    const dispatch = useDispatch();
+    const { teams, user } = useSelector((state) => state.user);
 
+    useEffect(() => {
+        dispatch(getTeams());
+    }, []);
+    console.log(user);
     return (
         <DashboardLayout>
-        <Header />
-        <SuiBox mt={5} mb={3}>
-            <Grid container spacing={3}>
-            <Grid item xs={12} md={6} xl={4}>
-                <ProfileInfoCard
-                title="profile information"
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec porttitor ex. Praesent suscipit accumsan nibh, sit amet facilisis leo ornare vitae. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
-                info={{
-                    fullName: `firstName LastName`,
-                    mobile: `06 000 000 00`,
-                    email: `test@example.com`,
-                }}
-                social={[
-                    {
-                    link: "https://www.facebook.com/",
-                    icon: <FacebookIcon />,
-                    color: "facebook",
-                    },
-                    {
-                    link: "https://twitter.com/",
-                    icon: <TwitterIcon />,
-                    color: "twitter",
-                    },
-                    {
-                    link: "https://www.instagram.com/",
-                    icon: <InstagramIcon />,
-                    color: "instagram",
-                    },
-                ]}
-                action={{ route: "", tooltip: "Edit Profile" }}
-                />
-            </Grid>
-            <Grid item xs={12} xl={true}>
-                <ProfilesList title="Team" profiles={profilesListData} />
-            </Grid>
-            </Grid>
-        </SuiBox>
+            <Header />
+            <SuiBox mt={5} mb={3}>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} md={6} xl={4}>
+                        <ProfileInfoCard
+                            title="profile information"
+                            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec porttitor ex. Praesent suscipit accumsan nibh, sit amet facilisis leo ornare vitae. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
+                            info={{
+                                fullName: `${user.firstName} ${user.lastName}`,
+                                mobile: `${user.phone}`,
+                                email: `${user.mail}`,
+                            }}
+                            social={[
+                                {
+                                    link: "https://www.facebook.com/",
+                                    icon: <FacebookIcon />,
+                                    color: "facebook",
+                                },
+                                {
+                                    link: "https://twitter.com/",
+                                    icon: <TwitterIcon />,
+                                    color: "twitter",
+                                },
+                                {
+                                    link: "https://www.instagram.com/",
+                                    icon: <InstagramIcon />,
+                                    color: "instagram",
+                                },
+                            ]}
+                            action={{ route: "", tooltip: "Edit Profile" }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} xl={true}>
+                        <ProfilesList title="Team" profiles={profilesListData} />
+                    </Grid>
+                </Grid>
+            </SuiBox>
 
-        <Footer />
+            <Footer />
         </DashboardLayout>
     );
 }

@@ -6,14 +6,22 @@ import Link from "@mui/material/Link";
 import SuiInput from "components/SuiInput";
 import SuiButton from "components/SuiButton";
 
-import React from "react";
+import React, { useEffect } from "react";
 import ConfiguratorRoot from "examples/SideMenu/ConfiguratorRoot";
 
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getStatus } from "stores/user";
 
 const AddEditUser = ({ display, setDisplay }) => {
     // const [isVisible, setIsVisible] = React.useState(false);
+    const dispatch = useDispatch();
+    const { status } = useSelector((state) => state.user);
+
+    useEffect(() => {
+        dispatch(getStatus());
+    }, []);
 
     return (
         <ConfiguratorRoot variant="permanent" ownerState={display}>
@@ -108,17 +116,16 @@ const AddEditUser = ({ display, setDisplay }) => {
                 <SuiBox>
                     <Dropdown
                         style={{ borderRadius: "50px" }}
-                        options={[
-                            <SuiTypography variant="caption" color="text" fontWeight="medium">
-                                status #1
-                            </SuiTypography>,
-                            <SuiTypography variant="caption" color="text" fontWeight="medium">
-                                status #2
-                            </SuiTypography>,
-                            <SuiTypography variant="caption" color="text" fontWeight="medium">
-                                status #3
-                            </SuiTypography>,
-                        ]}
+                        options={status?.map((element) => (
+                            <SuiTypography
+                                variant="caption"
+                                color="text"
+                                fontWeight="medium"
+                                key={element.id}
+                            >
+                                {element.designation}
+                            </SuiTypography>
+                        ))}
                         value={""}
                         placeholder={
                             <SuiTypography variant="caption" color="text" fontWeight="medium">

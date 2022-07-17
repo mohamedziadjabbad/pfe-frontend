@@ -46,14 +46,16 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getUsers, getTasks, getRoles, deleteUser } from "stores/user";
+import { useNavigate } from "react-router-dom";
 
 function Tables() {
     const disptach = useDispatch();
+    const navigation = useNavigate();
     const [userSidePanel, setUserSidePanel] = React.useState(false);
     const [taskSidePanel, setTaskSidePanel] = React.useState(false);
     const [userData, setUserData] = useState([]);
 
-    const { users } = useSelector((state) => state.user);
+    const { users, isLogged } = useSelector((state) => state.user);
 
     const { columns, rows } = authorsTableData;
     const { columns: prCols, rows: prRows } = projectsTableData;
@@ -104,7 +106,11 @@ function Tables() {
                 ),
             }))
         );
-    }, [users]);
+
+        if (!isLogged) {
+            navigation("/authentication/sign-in");
+        }
+    }, [users, isLogged]);
 
     const deleteUserByid = (id) => {
         disptach(deleteUser(id));
