@@ -71,7 +71,17 @@ const routes = [
         noCollapse: true,
         auth: true,
     },
+    {
+        type: "collapse",
+        name: "Project",
+        key: "project",
+        route: "/project",
+        icon: <SpaceShip size="12px" />,
+        component: <Project />,
+        noCollapse: true,
+    },
     { type: "title", title: "Account Pages", key: "account-pages" },
+
     {
         type: "collapse",
         name: "Profile",
@@ -90,16 +100,6 @@ const routes = [
         icon: <Document size="12px" />,
         component: <SignIn />,
         noCollapse: false,
-        auth: false,
-    },
-    {
-        type: "collapse",
-        name: "Project",
-        key: "project",
-        route: "/project",
-        icon: <SpaceShip size="12px" />,
-        component: <Project />,
-        noCollapse: true,
         auth: false,
     },
 ];

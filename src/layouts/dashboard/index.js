@@ -59,16 +59,19 @@ import AddProject from "examples/SideMenu/AddProject";
 import EditProject from "examples/SideMenu/EditProject";
 
 import React from "react";
-import { getCategories, getRoles } from "stores/user";
+import { getCategories, getRoles, getClients, getTeams, getUsers } from "stores/user";
 
 function Dashboard() {
     const navigation = useNavigate();
     const dispatch = useDispatch();
-    const { isLogged } = useSelector((state) => state.user);
+    const { isLogged, teams, users, clients } = useSelector((state) => state.user);
 
     useEffect(() => {
         dispatch(getRoles());
         dispatch(getCategories());
+        dispatch(getClients());
+        dispatch(getTeams());
+        dispatch(getUsers());
     }, []);
 
     useEffect(() => {
@@ -89,7 +92,7 @@ function Dashboard() {
                         <Grid item xs={12} sm={6} xl={3}>
                             <MiniStatisticsCard
                                 title={{ text: "Users" }}
-                                count="0"
+                                count={users?.length}
                                 // percentage={{ color: "success", text: "+55%" }}
                                 icon={{ color: "info", component: "support" }}
                             />
@@ -105,7 +108,7 @@ function Dashboard() {
                         <Grid item xs={12} sm={6} xl={3}>
                             <MiniStatisticsCard
                                 title={{ text: "Clients" }}
-                                count="2"
+                                count={clients?.length}
                                 // percentage={{ color: "error", text: "-2%" }}
                                 icon={{ color: "info", component: "emoji_events" }}
                             />
@@ -113,7 +116,7 @@ function Dashboard() {
                         <Grid item xs={12} sm={6} xl={3}>
                             <MiniStatisticsCard
                                 title={{ text: "Members" }}
-                                count="4"
+                                count={teams?.length}
                                 // percentage={{ color: "success", text: "+5%" }}
                                 icon={{ color: "info", component: "shopping_cart" }}
                             />

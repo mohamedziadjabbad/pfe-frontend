@@ -49,20 +49,29 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getUsers, getTasks, getRoles, deleteUser } from "stores/user";
+import { useNavigate } from "react-router-dom";
 
 function Tables() {
     const disptach = useDispatch();
+<<<<<<< HEAD
     const [addUserSidePanel, setAddUserSidePanel] = React.useState(false);
     const [editUserSidePanel, setEditUserSidePanel] = React.useState(false);
     const [addTaskSidePanel, setAddTaskSidePanel] = React.useState(false);
     const [editTaskSidePanel, setEditTaskSidePanel] = useState([]);
 
+=======
+    const navigation = useNavigate();
+>>>>>>> origin/updating
     const [userSidePanel, setUserSidePanel] = React.useState(false);
     const [taskSidePanel, setTaskSidePanel] = React.useState(false);
     const [userData, setUserData] = useState([]);
 
+<<<<<<< HEAD
 
     const { users } = useSelector((state) => state.user);
+=======
+    const { users, isLogged } = useSelector((state) => state.user);
+>>>>>>> origin/updating
 
     const { columns, rows } = authorsTableData;
     const { columns: prCols, rows: prRows } = projectsTableData;
@@ -113,7 +122,11 @@ function Tables() {
                 ),
             }))
         );
-    }, [users]);
+
+        if (!isLogged) {
+            navigation("/authentication/sign-in");
+        }
+    }, [users, isLogged]);
 
     const deleteUserByid = (id) => {
         disptach(deleteUser(id));
