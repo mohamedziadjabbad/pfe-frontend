@@ -50,14 +50,14 @@ import AddTaskToProject from "examples/SideMenu/AddTaskToProject";
 import React from "react";
 
 function Tables() {
-  const { columns, rows } = authorsTableData;
-  const { columns: prCols, rows: prRows } = projectsTableData;
+    const { columns, rows } = authorsTableData;
+    const { columns: prCols, rows: prRows } = projectsTableData;
 
-  const [addUserSidePanel, setAddUserSidePanel] = React.useState(false)
+    const [addUserSidePanel, setAddUserSidePanel] = React.useState(false)
 //   const [editUserSidePanel, setEditUserSidePanel] = React.useState(false)
-  const [addTaskSidePanel, setAddTaskSidePanel] = React.useState(false)
-  const [newTaskSidePanel, setNewTaskSidePanel] = React.useState(false)
-  const [editTaskSidePanel, setEditTaskSidePanel] = React.useState(false)
+    const [editUserSidePanel, setEditUserSidePanel] = React.useState(false)
+    const [addTaskSidePanel, setAddTaskSidePanel] = React.useState(false)
+    const [editTaskSidePanel, setEditTaskSidePanel] = React.useState(false)
 
   return (
     <DashboardLayout>
@@ -253,8 +253,7 @@ function Tables() {
         </SuiBox>
 
         <AddUserToProject display={addUserSidePanel} setDisplay={setAddUserSidePanel}/>
-        <AddTaskToProject display={newTaskSidePanel} setDisplay={setNewTaskSidePanel}/>
-        <AddTask display={newTaskSidePanel} setDisplay={setNewTaskSidePanel}/>
+        <AddTaskToProject display={addTaskSidePanel} setDisplay={setAddTaskSidePanel}/>
         <EditTask display={editTaskSidePanel} setDisplay={setEditTaskSidePanel}/>
     <Footer />
     </DashboardLayout>

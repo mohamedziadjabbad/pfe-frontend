@@ -26,7 +26,7 @@ import React, { useEffect } from "react";
 // Soft UI Dashboard React examples
 import TimelineItem from "examples/Timeline/TimelineItem";
 
-import AddCategory from "examples/SideMenu/AddCategories";
+import AddCategory from "examples/SideMenu/AddCategory";
 import EditCategory from "examples/SideMenu/EditCategories";
 // import AddEditCategory from "examples/SideMenu/AddEditCategories";
 import { useDispatch, useSelector } from "react-redux";
@@ -58,7 +58,7 @@ function OrdersOverview() {
                         variant="outlined"
                         size="small"
                         color={"info"}
-                        onClick={ ()=>{setEditCategorySidePanel(true)} }
+                        onClick={ ()=>{setAddCategorySidePanel(true)} }
                     >
                         Add Category
                     </SuiButton>
