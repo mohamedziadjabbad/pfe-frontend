@@ -83,13 +83,13 @@ const routes = [
         auth: true,
     },
     {
-        type: "collapse",
+        type: "noCollapse",
         name: "Sign out",
         key: "sign-in",
         route: "/authentication/sign-in",
         icon: <Document size="12px" />,
         component: <SignIn />,
-        noCollapse: true,
+        noCollapse: false,
         auth: false,
     },
     {

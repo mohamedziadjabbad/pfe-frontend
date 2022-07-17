@@ -38,181 +38,243 @@ import team1 from "assets/images/team-1.jpg";
 import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
-import {Author, Function} from "layouts/tables/data/authorsTableData";
-import {Completion, renderAuthors} from "layouts/tables/data/projectsTableData";
+
+import { Author, Function } from "layouts/tables/data/authorsTableData";
+import { Completion, renderAuthors } from "layouts/tables/data/projectsTableData";
 
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getUsers, getTasks, getRoles, deleteUser } from "stores/user";
 
 function Tables() {
-  const { columns, rows } = authorsTableData;
-  const { columns: prCols, rows: prRows } = projectsTableData;
+    const disptach = useDispatch();
+    const [userSidePanel, setUserSidePanel] = React.useState(false);
+    const [taskSidePanel, setTaskSidePanel] = React.useState(false);
+    const [userData, setUserData] = useState([]);
 
-  const [userSidePanel, setUserSidePanel] = React.useState(false)
-  const [taskSidePanel, setTaskSidePanel] = React.useState(false)
+    const { users } = useSelector((state) => state.user);
 
-  return (
-    <DashboardLayout>
-        <DashboardNavbar />
-        <SuiBox py={3}>
-            <SuiBox mb={3}>
-            <Card>
-                <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-                <SuiTypography variant="h6">Users</SuiTypography>
-                <SuiButton
-                    onClick={ ()=>{setUserSidePanel(true)} }
-                    variant="outlined"
-                    size="small"
-                    color={"info"}
-                >
-                    Add user
-                </SuiButton>
+    const { columns, rows } = authorsTableData;
+    const { columns: prCols, rows: prRows } = projectsTableData;
+
+    useEffect(() => {
+        disptach(getUsers());
+        disptach(getTasks());
+        disptach(getRoles());
+    }, []);
+
+    useEffect(() => {
+        setUserData(
+            users?.map((element) => ({
+                user: (
+                    <Author
+                        image={team2}
+                        name={`${element.firstname} ${element.lastname}`}
+                        email={element.email}
+                    />
+                ),
+                role: <Function job={element.roles[0].name} org="" />,
+                phone: (
+                    <SuiTypography variant="caption" color="secondary" fontWeight="medium">
+                        {element.phone}
+                    </SuiTypography>
+                ),
+                action: (
+                    <SuiBox display="flex" flexDirection="row" gap="5px">
+                        <SuiButton
+                            onClick={() => {
+                                setUserSidePanel(true);
+                            }}
+                            variant="text"
+                            size="small"
+                            color={"text"}
+                        >
+                            Edit
+                        </SuiButton>
+                        <SuiButton
+                            onClick={() => deleteUserByid(element.id)}
+                            variant="text"
+                            size="small"
+                            color={"error"}
+                        >
+                            Remove
+                        </SuiButton>
+                    </SuiBox>
+                ),
+            }))
+        );
+    }, [users]);
+
+    const deleteUserByid = (id) => {
+        disptach(deleteUser(id));
+    };
+
+    return (
+        <DashboardLayout>
+            <DashboardNavbar />
+            <SuiBox py={3}>
+                <SuiBox mb={3}>
+                    <Card>
+                        <SuiBox
+                            display="flex"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            p={3}
+                        >
+                            <SuiTypography variant="h6">Users</SuiTypography>
+                            <SuiButton
+                                onClick={() => {
+                                    setUserSidePanel(true);
+                                }}
+                                variant="outlined"
+                                size="small"
+                                color={"info"}
+                            >
+                                Add user
+                            </SuiButton>
+                        </SuiBox>
+                        <SuiBox
+                            sx={{
+                                "& .MuiTableRow-root:not(:last-child)": {
+                                    "& td": {
+                                        borderBottom: ({ borders: { borderWidth, borderColor } }) =>
+                                            `${borderWidth[1]} solid ${borderColor}`,
+                                    },
+                                },
+                            }}
+                        >
+                            <Table columns={columns} rows={userData} />
+                        </SuiBox>
+                    </Card>
                 </SuiBox>
-                <SuiBox
-                sx={{
-                    "& .MuiTableRow-root:not(:last-child)": {
-                    "& td": {
-                        borderBottom: ({ borders: { borderWidth, borderColor } }) =>
-                        `${borderWidth[1]} solid ${borderColor}`,
-                    },
-                    },
-                }}
-                >
-                <Table columns={columns} rows={
-                        [
-                            {
-                                user: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
-                                role: <Function job="Manager" org="Organization" />,
-                                phone: (
-                                    <SuiTypography variant="caption" color="secondary" fontWeight="medium">
-                                        +212-0625-125212
-                                    </SuiTypography>
-                                ),
-                                action: (
-                                    <SuiBox display="flex" flexDirection="row" gap="5px">
-                                        <SuiButton
-                                            onClick={() => {setUserSidePanel(true)}}
-                                            variant="text"
-                                            size="small"
-                                            color={"text"}
+                <Card>
+                    <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+                        <SuiTypography variant="h6">Tasks</SuiTypography>
+                        <SuiButton
+                            onClick={() => {
+                                setTaskSidePanel(true);
+                            }}
+                            variant="outlined"
+                            size="small"
+                            color={"info"}
+                        >
+                            Add Task
+                        </SuiButton>
+                    </SuiBox>
+                    <SuiBox
+                        sx={{
+                            "& .MuiTableRow-root:not(:last-child)": {
+                                "& td": {
+                                    borderBottom: ({ borders: { borderWidth, borderColor } }) =>
+                                        `${borderWidth[1]} solid ${borderColor}`,
+                                },
+                            },
+                        }}
+                    >
+                        <Table
+                            columns={prCols}
+                            rows={[
+                                {
+                                    name: (
+                                        <SuiTypography
+                                            variant="button"
+                                            color="text"
+                                            fontWeight="medium"
                                         >
-                                            Edit
-                                        </SuiButton>
-                                        <SuiButton
-                                            // onClick={}
-                                            variant="text"
-                                            size="small"
-                                            color={"error"}
+                                            Test Task #1
+                                        </SuiTypography>
+                                    ),
+                                    members: (
+                                        <SuiBox display="flex">
+                                            {renderAuthors([
+                                                { image: team1, name: "Elena Morison" },
+                                                { image: team2, name: "Ryan Milly" },
+                                                { image: team3, name: "Nick Daniel" },
+                                                { image: team4, name: "Peterson" },
+                                            ])}
+                                        </SuiBox>
+                                    ),
+                                    priority: (
+                                        <SuiTypography
+                                            variant="caption"
+                                            color="text"
+                                            fontWeight="medium"
                                         >
-                                            Remove
-                                        </SuiButton>
-                                </SuiBox>
-                                ),
-                            },  
-                        ]
-                    }/>
+                                            HIGH
+                                        </SuiTypography>
+                                    ),
+                                    project: (
+                                        <SuiTypography
+                                            variant="caption"
+                                            color="text"
+                                            fontWeight="medium"
+                                        >
+                                            project #1
+                                        </SuiTypography>
+                                    ),
+                                    status: (
+                                        <SuiTypography
+                                            variant="caption"
+                                            color="text"
+                                            fontWeight="medium"
+                                        >
+                                            working
+                                        </SuiTypography>
+                                    ),
+                                    completion: <Completion value={60} color="info" />,
+                                    Deadline: (
+                                        <SuiTypography
+                                            variant="caption"
+                                            color="text"
+                                            fontWeight="medium"
+                                        >
+                                            18-Jul-2022
+                                        </SuiTypography>
+                                    ),
+                                    actions: (
+                                        <SuiTypography
+                                            variant="caption"
+                                            color="text"
+                                            fontWeight="medium"
+                                        >
+                                            <SuiBox display="flex" flexDirection="row" gap="5px">
+                                                <SuiButton
+                                                    onClick={() => {
+                                                        setTaskSidePanel(true);
+                                                    }}
+                                                    variant="text"
+                                                    size="small"
+                                                    color={"text"}
+                                                >
+                                                    Edit
+                                                </SuiButton>
+                                                <SuiButton
+                                                    onClick={() => {
+                                                        setTaskSidePanel(true);
+                                                    }}
+                                                    variant="text"
+                                                    size="small"
+                                                    color={"error"}
+                                                >
+                                                    Remove
+                                                </SuiButton>
+                                            </SuiBox>
+                                        </SuiTypography>
+                                    ),
+                                },
+                            ]}
+                            controller={setTaskSidePanel}
+                        />
+                    </SuiBox>
+                </Card>
+            </SuiBox>
 
-                </SuiBox>
-            </Card>
-            </SuiBox>
-            <Card>
-            <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-                <SuiTypography variant="h6">Tasks</SuiTypography>
-                <SuiButton
-                    onClick={ ()=>{setTaskSidePanel(true)} }
-                    variant="outlined"
-                    size="small"
-                    color={"info"}
-                >
-                    Add Task
-                </SuiButton>
-            </SuiBox>
-            <SuiBox
-                sx={{
-                "& .MuiTableRow-root:not(:last-child)": {
-                    "& td": {
-                    borderBottom: ({ borders: { borderWidth, borderColor } }) =>
-                        `${borderWidth[1]} solid ${borderColor}`,
-                    },
-                },
-                }}
-            >
-                <Table columns={prCols} rows={
-                    [
-                        {
-                            name: (
-                              <SuiTypography variant="button" color="text" fontWeight="medium">
-                                Test Task #1
-                              </SuiTypography>
-                            ),
-                            members: (
-                              <SuiBox display="flex">
-                                  {
-                                  renderAuthors(
-                                  [
-                                      { image: team1, name: "Elena Morison" },
-                                      { image: team2, name: "Ryan Milly" },
-                                      { image: team3, name: "Nick Daniel" },
-                                      { image: team4, name: "Peterson" },
-                                  ]
-                                  )
-                                  }
-                              </SuiBox>
-                            ),
-                            priority: (
-                              <SuiTypography variant="caption" color="text" fontWeight="medium">
-                                  HIGH
-                              </SuiTypography>
-                            ),
-                            project: (
-                              <SuiTypography variant="caption" color="text" fontWeight="medium">
-                                  project #1
-                              </SuiTypography>
-                            ),
-                            status: (
-                              <SuiTypography variant="caption" color="text" fontWeight="medium">
-                                  working
-                              </SuiTypography>
-                            ),
-                            completion: <Completion value={60} color="info" />,
-                            Deadline: (
-                              <SuiTypography variant="caption" color="text" fontWeight="medium">
-                                18-Jul-2022
-                              </SuiTypography>
-                            ),
-                            actions: (
-                              <SuiTypography variant="caption" color="text" fontWeight="medium">
-                                  <SuiBox display="flex" flexDirection="row" gap="5px">
-                                      <SuiButton
-                                          onClick={() =>{setTaskSidePanel(true)}}
-                                          variant="text"
-                                          size="small"
-                                          color={"text"}
-                                      >
-                                          Edit
-                                      </SuiButton>
-                                      <SuiButton
-                                          onClick={() =>{setTaskSidePanel(true)}}
-                                          variant="text"
-                                          size="small"
-                                          color={"error"}
-                                      >
-                                          Remove
-                                      </SuiButton>
-                                  </SuiBox>
-                              </SuiTypography>
-                            ),
-                        },
-                    ]
-                } controller={setTaskSidePanel}/>
-            </SuiBox>
-            </Card>
-        </SuiBox>
-
-        <AddEditUser display={userSidePanel} setDisplay={setUserSidePanel}/>
-        <AddEditTask display={taskSidePanel} setDisplay={setTaskSidePanel}/>
-    <Footer />
-    </DashboardLayout>
-  );
+            <AddEditUser display={userSidePanel} setDisplay={setUserSidePanel} />
+            <AddEditTask display={taskSidePanel} setDisplay={setTaskSidePanel} />
+            <Footer />
+        </DashboardLayout>
+    );
 }
 
 export default Tables;
