@@ -37,15 +37,14 @@ function OrdersOverview() {
     const dispatch = useDispatch();
     const { categories } = useSelector((state) => state.user);
 
-    const [addCategorySidePanel, setAddCategorySidePanel] = React.useState(false)
-    const [editCategorySidePanel, setEditCategorySidePanel] = React.useState(false)
+    const [addCategorySidePanel, setAddCategorySidePanel] = React.useState(false);
+    const [editCategorySidePanel, setEditCategorySidePanel] = React.useState(false);
 
     const [sidePanel, setSidePanel] = React.useState(false);
 
     const deleteCategory = (id) => {
         dispatch(deleteCategorie(id));
     };
-
 
     return (
         <Card className="h-100">
@@ -58,7 +57,9 @@ function OrdersOverview() {
                         variant="outlined"
                         size="small"
                         color={"info"}
-                        onClick={ ()=>{setAddCategorySidePanel(true)} }
+                        onClick={() => {
+                            setAddCategorySidePanel(true);
+                        }}
                     >
                         Add Category
                     </SuiButton>
@@ -95,35 +96,11 @@ function OrdersOverview() {
                             }
                         />
                     ))}
-            <TimelineItem 
-                title="Category #1"
-                dateTime={
-                    <SuiBox display="flex" alignItems="right">
-                        <SuiButton
-                            to={""}
-                            variant="text"
-                            size="small"
-                            color={"info"}
-                            onClick={ ()=>{setEditCategorySidePanel(true)} }
-                        >
-                            Edit
-                        </SuiButton>
-                        <SuiButton
-                            to={""}
-                            variant="text"
-                            size="small"
-                            color={"error"}
-                        >
-                            Remove
-                        </SuiButton>
-                    </SuiBox>
-                }
-            />
-        </SuiBox>
-        <AddCategory display={addCategorySidePanel} setDisplay={setAddCategorySidePanel}/>
-        <EditCategory display={editCategorySidePanel} setDisplay={setEditCategorySidePanel}/>
-    </Card>
-  );
+            </SuiBox>
+            <AddCategory display={addCategorySidePanel} setDisplay={setAddCategorySidePanel} />
+            <EditCategory display={editCategorySidePanel} setDisplay={setEditCategorySidePanel} />
+        </Card>
+    );
 }
 
 export default OrdersOverview;
