@@ -14,7 +14,7 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { createUser, getRoles } from "stores/user";
 
-const AddEditUser = ({ display, setDisplay }) => {
+const EditUser = ({ display, setDisplay }) => {
     const dispatch = useDispatch();
     const { token, roles } = useSelector((state) => state.user);
 
@@ -44,7 +44,7 @@ const AddEditUser = ({ display, setDisplay }) => {
             setEmail("");
             setRole("");
         } else {
-            setErr("s'il vous plaít completer formulaire");
+            setErr("s'il vous plaít completez le formulaire");
         }
     };
 
@@ -59,7 +59,7 @@ const AddEditUser = ({ display, setDisplay }) => {
                 px={3}
             >
                 <SuiBox>
-                    <SuiTypography variant="h5">Create user</SuiTypography>
+                    <SuiTypography variant="h5">Edit user</SuiTypography>
                     <SuiTypography variant="body2" color="text">
                         Fill the form below.
                     </SuiTypography>
@@ -171,4 +171,4 @@ const AddEditUser = ({ display, setDisplay }) => {
     );
 };
 
-export default AddEditUser;
+export default EditUser;

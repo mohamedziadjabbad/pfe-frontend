@@ -12,7 +12,7 @@ import ConfiguratorRoot from "examples/SideMenu/ConfiguratorRoot";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 
-const AddEditProject = ({ display, setDisplay }) => {
+const AddClient = ({ display, setDisplay }) => {
     // const [isVisible, setIsVisible] = React.useState(false);
 
     return (
@@ -26,7 +26,7 @@ const AddEditProject = ({ display, setDisplay }) => {
                 px={3}
             >
                 <SuiBox>
-                    <SuiTypography variant="h5">Create Project</SuiTypography>
+                    <SuiTypography variant="h5">Create Client</SuiTypography>
                     <SuiTypography variant="body2" color="text">
                         Fill the form below.
                     </SuiTypography>
@@ -51,28 +51,13 @@ const AddEditProject = ({ display, setDisplay }) => {
 
             <SuiBox pt={1.25} pb={3} px={3}>
                 <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Title..." />
+                    <SuiInput placeholder="Name..." />
                 </SuiBox>
                 <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Description..." />
+                    <SuiInput placeholder="Company..." />
                 </SuiBox>
                 <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Start date..." />
-                </SuiBox>
-                <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Expected end date..." />
-                </SuiBox>
-                <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="End date..." />
-                </SuiBox>
-                <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Client..." />
-                </SuiBox>
-                <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Title..." />
-                </SuiBox>
-                <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Total number of tasks..." />
+                    <SuiInput placeholder="Phone..." />
                 </SuiBox>
 
                 <Divider />
@@ -95,4 +80,4 @@ const AddEditProject = ({ display, setDisplay }) => {
     );
 };
 
-export default AddEditProject;
+export default AddClient;

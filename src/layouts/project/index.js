@@ -42,8 +42,9 @@ import team4 from "assets/images/team-4.jpg";
 import {Author, Function} from "layouts/tables/data/authorsTableData";
 import {Completion, renderAuthors} from "layouts/tables/data/projectsTableData";
 
+import AddTask from "examples/SideMenu/AddTask";
+import EditTask from "examples/SideMenu/EditTask";
 import AddUserToProject from "examples/SideMenu/AddUserToProject";
-import AddEditTask from "examples/SideMenu/AddEditTask";
 import AddTaskToProject from "examples/SideMenu/AddTaskToProject";
 
 import React from "react";
@@ -52,9 +53,11 @@ function Tables() {
   const { columns, rows } = authorsTableData;
   const { columns: prCols, rows: prRows } = projectsTableData;
 
-  const [userSidePanel, setUserSidePanel] = React.useState(false)
-  const [taskSidePanel, setTaskSidePanel] = React.useState(false)
+  const [addUserSidePanel, setAddUserSidePanel] = React.useState(false)
+//   const [editUserSidePanel, setEditUserSidePanel] = React.useState(false)
+  const [addTaskSidePanel, setAddTaskSidePanel] = React.useState(false)
   const [newTaskSidePanel, setNewTaskSidePanel] = React.useState(false)
+  const [editTaskSidePanel, setEditTaskSidePanel] = React.useState(false)
 
   return (
     <DashboardLayout>
@@ -101,7 +104,7 @@ function Tables() {
                 <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
                 <SuiTypography variant="h6">Assigned Users</SuiTypography>
                 <SuiButton
-                    onClick={ ()=>{setUserSidePanel(true)} }
+                    onClick={ ()=>{setAddUserSidePanel(true)} }
                     variant="outlined"
                     size="small"
                     color={"info"}
@@ -159,7 +162,7 @@ function Tables() {
             <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
                 <SuiTypography variant="h6">Project Tasks</SuiTypography>
                 <SuiButton
-                    onClick={ ()=>{setTaskSidePanel(true)} }
+                    onClick={ ()=>{setAddTaskSidePanel(true)} }
                     variant="outlined"
                     size="small"
                     color={"info"}
@@ -223,7 +226,7 @@ function Tables() {
                           <SuiTypography variant="caption" color="text" fontWeight="medium">
                               <SuiBox display="flex" flexDirection="row" gap="5px">
                                   <SuiButton
-                                      onClick={() =>{setNewTaskSidePanel(true)}}
+                                      onClick={() =>{setEditTaskSidePanel(true)}}
                                       variant="text"
                                       size="small"
                                       color={"text"}
@@ -244,14 +247,15 @@ function Tables() {
                   
                       },]
 
-                } controller={setTaskSidePanel}/>
+                }/>
             </SuiBox>
             </Card>
         </SuiBox>
 
-        <AddUserToProject display={userSidePanel} setDisplay={setUserSidePanel}/>
-        <AddTaskToProject display={taskSidePanel} setDisplay={setTaskSidePanel}/>
-        <AddEditTask display={newTaskSidePanel} setDisplay={setNewTaskSidePanel}/>
+        <AddUserToProject display={addUserSidePanel} setDisplay={setAddUserSidePanel}/>
+        <AddTaskToProject display={newTaskSidePanel} setDisplay={setNewTaskSidePanel}/>
+        <AddTask display={newTaskSidePanel} setDisplay={setNewTaskSidePanel}/>
+        <EditTask display={editTaskSidePanel} setDisplay={setEditTaskSidePanel}/>
     <Footer />
     </DashboardLayout>
   );

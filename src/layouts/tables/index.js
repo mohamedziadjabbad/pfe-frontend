@@ -31,8 +31,10 @@ import Table from "examples/Tables/Table";
 import authorsTableData from "layouts/tables/data/authorsTableData";
 import projectsTableData from "layouts/tables/data/projectsTableData";
 
-import AddEditUser from "examples/SideMenu/AddEditUser";
-import AddEditTask from "examples/SideMenu/AddEditTask";
+import AddUser from "examples/SideMenu/AddUser";
+import EditUser from "examples/SideMenu/EditUser";
+import AddTask from "examples/SideMenu/AddTask";
+import EditTask from "examples/SideMenu/EditTask";
 
 import team1 from "assets/images/team-1.jpg";
 import team2 from "assets/images/team-2.jpg";
@@ -42,6 +44,7 @@ import team4 from "assets/images/team-4.jpg";
 import { Author, Function } from "layouts/tables/data/authorsTableData";
 import { Completion, renderAuthors } from "layouts/tables/data/projectsTableData";
 
+
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -49,9 +52,15 @@ import { getUsers, getTasks, getRoles, deleteUser } from "stores/user";
 
 function Tables() {
     const disptach = useDispatch();
+    const [addUserSidePanel, setAddUserSidePanel] = React.useState(false);
+    const [editUserSidePanel, setEditUserSidePanel] = React.useState(false);
+    const [addTaskSidePanel, setAddTaskSidePanel] = React.useState(false);
+    const [editTaskSidePanel, setEditTaskSidePanel] = useState([]);
+
     const [userSidePanel, setUserSidePanel] = React.useState(false);
     const [taskSidePanel, setTaskSidePanel] = React.useState(false);
     const [userData, setUserData] = useState([]);
+
 
     const { users } = useSelector((state) => state.user);
 
@@ -84,7 +93,7 @@ function Tables() {
                     <SuiBox display="flex" flexDirection="row" gap="5px">
                         <SuiButton
                             onClick={() => {
-                                setUserSidePanel(true);
+                                editUserSidePanel(true);
                             }}
                             variant="text"
                             size="small"
@@ -125,7 +134,7 @@ function Tables() {
                             <SuiTypography variant="h6">Users</SuiTypography>
                             <SuiButton
                                 onClick={() => {
-                                    setUserSidePanel(true);
+                                    addUserSidePanel(true);
                                 }}
                                 variant="outlined"
                                 size="small"
@@ -153,7 +162,7 @@ function Tables() {
                         <SuiTypography variant="h6">Tasks</SuiTypography>
                         <SuiButton
                             onClick={() => {
-                                setTaskSidePanel(true);
+                                addTaskSidePanel(true);
                             }}
                             variant="outlined"
                             size="small"
@@ -241,7 +250,7 @@ function Tables() {
                                             <SuiBox display="flex" flexDirection="row" gap="5px">
                                                 <SuiButton
                                                     onClick={() => {
-                                                        setTaskSidePanel(true);
+                                                        editTaskSidePanel(true);
                                                     }}
                                                     variant="text"
                                                     size="small"
@@ -251,7 +260,7 @@ function Tables() {
                                                 </SuiButton>
                                                 <SuiButton
                                                     onClick={() => {
-                                                        setTaskSidePanel(true);
+                                                        
                                                     }}
                                                     variant="text"
                                                     size="small"
@@ -264,14 +273,15 @@ function Tables() {
                                     ),
                                 },
                             ]}
-                            controller={setTaskSidePanel}
                         />
                     </SuiBox>
                 </Card>
             </SuiBox>
 
-            <AddEditUser display={userSidePanel} setDisplay={setUserSidePanel} />
-            <AddEditTask display={taskSidePanel} setDisplay={setTaskSidePanel} />
+            <AddUser display={addUserSidePanel} setDisplay={setAddUserSidePanel} />
+            <EditUser display={editUserSidePanel} setDisplay={setEditUserSidePanel} />
+            <AddTask display={addTaskSidePanel} setDisplay={setAddTaskSidePanel} />
+            <EditTask display={editTaskSidePanel} setDisplay={setEditTaskSidePanel} />
             <Footer />
         </DashboardLayout>
     );

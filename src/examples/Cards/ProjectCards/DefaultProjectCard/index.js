@@ -72,7 +72,8 @@ function DefaultProjectCard({ title, description, startDate, endDate, expectedEn
     >
 
 
-    <SuiBox pt={3} px={0.5} onClick={redirectToProjectPage}>
+    <SuiBox pt={3} px={0.5} >
+        <SuiBox onClick={redirectToProjectPage}>
         <SuiBox mb={3} lineHeight={0}>
             <SuiTypography variant="button" fontWeight="regular" color="text">
                 <h3 color="info">{title}</h3> <br />
@@ -106,6 +107,7 @@ function DefaultProjectCard({ title, description, startDate, endDate, expectedEn
                     </li>
                 </ul>
             </SuiTypography>
+        </SuiBox>
         </SuiBox>
 
         <SuiBox mb={3} lineHeight={0}>

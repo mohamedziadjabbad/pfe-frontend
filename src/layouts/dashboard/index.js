@@ -55,7 +55,8 @@ import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
 import PlaceholderCard from "examples/Cards/PlaceholderCard";
 import SuiButton from "components/SuiButton";
 
-import AddEditProject from "examples/SideMenu/AddEditProject";
+import AddProject from "examples/SideMenu/AddProject";
+import EditProject from "examples/SideMenu/EditProject";
 
 import React from "react";
 import { getCategories, getRoles } from "stores/user";
@@ -76,7 +77,8 @@ function Dashboard() {
         }
     }, [isLogged]);
 
-    const [sidePanel, setSidePanel] = React.useState(false);
+    const [addProjectSidePanel, setAddProjectSidePanel] = React.useState(false);
+    const [editProjectSidePanel, setEditProjectSidePanel] = React.useState(false);
 
     return (
         <DashboardLayout>
@@ -163,7 +165,7 @@ function Dashboard() {
                                                     size="small"
                                                     color={"info"}
                                                     onClick={() => {
-                                                        setSidePanel(true);
+                                                        setEditProjectSidePanel(true);
                                                     }}
                                                 >
                                                     Edit
@@ -208,7 +210,7 @@ function Dashboard() {
                                                     size="small"
                                                     color={"info"}
                                                     onClick={() => {
-                                                        setSidePanel(true);
+                                                        setEditProjectSidePanel(true);
                                                     }}
                                                 >
                                                     Edit
@@ -253,7 +255,7 @@ function Dashboard() {
                                                     size="small"
                                                     color={"info"}
                                                     onClick={() => {
-                                                        setSidePanel(true);
+                                                        setEditProjectSidePanel(true);
                                                     }}
                                                 >
                                                     Edit
@@ -276,7 +278,7 @@ function Dashboard() {
                                     md={6}
                                     xl={3}
                                     onClick={() => {
-                                        setSidePanel(true);
+                                        setAddProjectSidePanel(true);
                                     }}
                                     style={{ cursor: "pointer" }}
                                 >
@@ -310,7 +312,8 @@ function Dashboard() {
                 </Grid>
             </SuiBox>
 
-            <AddEditProject display={sidePanel} setDisplay={setSidePanel} />
+            <AddProject display={addProjectSidePanel} setDisplay={setAddProjectSidePanel} />
+            <EditProject display={editProjectSidePanel} setDisplay={setEditProjectSidePanel} />
 
             <Footer />
         </DashboardLayout>

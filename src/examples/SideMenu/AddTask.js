@@ -12,7 +12,7 @@ import ConfiguratorRoot from "examples/SideMenu/ConfiguratorRoot";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 
-const AddEditUser = ({ display, setDisplay }) => {
+const AddTask = ({ display, setDisplay }) => {
     // const [isVisible, setIsVisible] = React.useState(false);
 
     return (
@@ -148,4 +148,4 @@ const AddEditUser = ({ display, setDisplay }) => {
     );
 };
 
-export default AddEditUser;
+export default AddTask;

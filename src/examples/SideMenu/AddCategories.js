@@ -12,7 +12,7 @@ import ConfiguratorRoot from "examples/SideMenu/ConfiguratorRoot";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 
-const AddEditClient = ({ display, setDisplay }) => {
+const AddCategory = ({ display, setDisplay }) => {
     // const [isVisible, setIsVisible] = React.useState(false);
 
     return (
@@ -26,7 +26,7 @@ const AddEditClient = ({ display, setDisplay }) => {
                 px={3}
             >
                 <SuiBox>
-                    <SuiTypography variant="h5">Create Client</SuiTypography>
+                    <SuiTypography variant="h5">Create Category</SuiTypography>
                     <SuiTypography variant="body2" color="text">
                         Fill the form below.
                     </SuiTypography>
@@ -53,12 +53,6 @@ const AddEditClient = ({ display, setDisplay }) => {
                 <SuiBox mt={3} mb={2}>
                     <SuiInput placeholder="Name..." />
                 </SuiBox>
-                <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Company..." />
-                </SuiBox>
-                <SuiBox mt={3} mb={2}>
-                    <SuiInput placeholder="Phone..." />
-                </SuiBox>
 
                 <Divider />
 
@@ -80,4 +74,4 @@ const AddEditClient = ({ display, setDisplay }) => {
     );
 };
 
-export default AddEditClient;
+export default AddCategory;
