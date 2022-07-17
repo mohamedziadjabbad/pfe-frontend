@@ -14,6 +14,9 @@ const initialState = {
     clients: [],
     status: [],
     teams: [],
+    projects: [],
+    project: {},
+    periority: [],
     isLogged: false,
     userNotFound: false,
 };
@@ -54,6 +57,12 @@ export const userSlice = createSlice({
         },
         setTeams(state, action) {
             state.teams = action.payload;
+        },
+        setProjects(state, action) {
+            state.projects = action.payload;
+        },
+        setPeriority(state, action) {
+            state.periority = action.payload;
         },
     },
     extraReducers: (builder) => {},
@@ -216,6 +225,75 @@ export const getTasks = createAsyncThunk(
                 .then((res) => {
                     console.log(res.data);
                     dispatch(setTasks(res.data));
+                });
+        } catch (e) {
+            if (e.response.status === 401) {
+                dispatch(setUserNotFound(true));
+                dispatch(setIsLogged(false));
+                dispatch(setToken(""));
+            }
+            if (e.response.status === 403) {
+                dispatch(setToken(""));
+                dispatch(setIsLogged(false));
+            }
+        }
+    }
+);
+
+export const createTask = createAsyncThunk(
+    "user/createTask",
+    async (task, { dispatch, getState }) => {
+        const { token } = getState().user;
+        console.log(task);
+        try {
+            await axios
+                .post(
+                    `${serverUrl}/task`,
+                    {
+                        name: task.name,
+                        description: task.description,
+                        startDate: task.startdate,
+                        expectedEndDate: task.enddate,
+                        project: {
+                            id: task.project,
+                        },
+                        status: {
+                            id: task.state,
+                        },
+                        priority: {
+                            id: task.perior,
+                        },
+                    },
+                    { headers: { Authorization: `Bearer ${token}` } }
+                )
+                .then((res) => {
+                    dispatch(getTasks());
+                });
+        } catch (e) {
+            if (e.response.status === 401) {
+                dispatch(setUserNotFound(true));
+                dispatch(setIsLogged(false));
+                dispatch(setToken(""));
+            }
+            if (e.response.status === 403) {
+                dispatch(setToken(""));
+                dispatch(setIsLogged(false));
+            }
+        }
+    }
+);
+
+export const deleteTask = createAsyncThunk(
+    "user/deleteTask",
+    async (taskId, { dispatch, getState }) => {
+        const { token } = getState().user;
+        try {
+            await axios
+                .delete(`${serverUrl}/task/${taskId}`, {
+                    headers: { Authorization: `Bearer ${token}` },
+                })
+                .then((res) => {
+                    dispatch(getTasks());
                 });
         } catch (e) {
             if (e.response.status === 401) {
@@ -445,6 +523,126 @@ export const getTeams = createAsyncThunk(
     }
 );
 
+export const getProjects = createAsyncThunk(
+    "user/getProjects",
+    async (device, { dispatch, getState }) => {
+        const { token } = getState().user;
+        try {
+            await axios
+                .get(`${serverUrl}/project`, { headers: { Authorization: `Bearer ${token}` } })
+                .then((res) => {
+                    dispatch(setProjects(res.data));
+                });
+        } catch (e) {
+            if (e.response.status === 401) {
+                dispatch(setUserNotFound(true));
+                dispatch(setIsLogged(false));
+                dispatch(setToken(""));
+            }
+            if (e.response.status === 403) {
+                dispatch(setToken(""));
+                dispatch(setIsLogged(false));
+            }
+        }
+    }
+);
+
+export const createProject = createAsyncThunk(
+    "user/createProject",
+    async (project, { dispatch, getState }) => {
+        const { token } = getState().user;
+        try {
+            await axios
+                .post(
+                    `${serverUrl}/project`,
+                    {
+                        name: project.name,
+                        description: project.description,
+                        startdate: project.startdate,
+                        enddate: project.enddate,
+                        expectedenddate: project.expectedend,
+                        status: {
+                            id: project.state,
+                        },
+                        categories: {
+                            id: project.category,
+                        },
+                        clients: {
+                            id: project.client,
+                        },
+                    },
+                    { headers: { Authorization: `Bearer ${token}` } }
+                )
+                .then((res) => {
+                    dispatch(getProjects());
+                });
+        } catch (e) {
+            if (e.response.status === 401) {
+                dispatch(setUserNotFound(true));
+                dispatch(setIsLogged(false));
+                dispatch(setToken(""));
+            }
+            if (e.response.status === 403) {
+                dispatch(setToken(""));
+                dispatch(setIsLogged(false));
+            }
+        }
+    }
+);
+
+export const deleteProject = createAsyncThunk(
+    "user/deleteProject",
+    async (projectId, { dispatch, getState }) => {
+        const { token } = getState().user;
+        try {
+            await axios
+                .delete(`${serverUrl}/project/${projectId}`, {
+                    headers: { Authorization: `Bearer ${token}` },
+                })
+                .then((res) => {
+                    dispatch(getProjects());
+                });
+        } catch (e) {
+            if (e.response.status === 401) {
+                dispatch(setUserNotFound(true));
+                dispatch(setIsLogged(false));
+                dispatch(setToken(""));
+            }
+            if (e.response.status === 403) {
+                dispatch(setToken(""));
+                dispatch(setIsLogged(false));
+            }
+        }
+    }
+);
+
+export const getPeriority = createAsyncThunk(
+    "user/getPeriority",
+    async (periority, { dispatch, getState }) => {
+        const { token } = getState().user;
+        try {
+            await axios
+                .get(`${serverUrl}/priority`, {
+                    headers: { Authorization: `Bearer ${token}` },
+                })
+                .then((res) => {
+                    console.log(res.data);
+                    dispatch(setPeriority(res.data));
+                });
+        } catch (e) {
+            if (e.response.status === 401) {
+                dispatch(setUserNotFound(true));
+                dispatch(setIsLogged(false));
+                dispatch(setToken(""));
+            }
+            if (e.response.status === 403) {
+                dispatch(setToken(""));
+                dispatch(setIsLogged(false));
+            }
+        }
+    }
+);
+
 export const signOut = createAsyncThunk("user/signOut", async (userId, { dispatch, getState }) => {
     try {
         dispatch(setToken(""));
@@ -464,7 +662,9 @@ export const {
     setTasks,
     setClients,
     setStatus,
+    setPeriority,
     setTeams,
+    setProjects,
 } = userSlice.actions;
 
 export default userSlice.reducer;

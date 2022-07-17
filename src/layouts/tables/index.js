@@ -44,12 +44,12 @@ import team4 from "assets/images/team-4.jpg";
 import { Author, Function } from "layouts/tables/data/authorsTableData";
 import { Completion, renderAuthors } from "layouts/tables/data/projectsTableData";
 
-
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getUsers, getTasks, getRoles, deleteUser } from "stores/user";
+import { getUsers, getTasks, getRoles, deleteUser, getPeriority } from "stores/user";
 import { useNavigate } from "react-router-dom";
+import { deleteTask } from "stores/user";
 
 function Tables() {
     const disptach = useDispatch();
@@ -63,7 +63,7 @@ function Tables() {
     const navigation = useNavigate();
 
     // const { users } = useSelector((state) => state.user);
-    const { users, isLogged } = useSelector((state) => state.user);
+    const { users, isLogged, tasks } = useSelector((state) => state.user);
 
     const { columns, rows } = authorsTableData;
     const { columns: prCols, rows: prRows } = projectsTableData;
@@ -72,6 +72,7 @@ function Tables() {
         disptach(getUsers());
         disptach(getTasks());
         disptach(getRoles());
+        disptach(getPeriority());
     }, []);
 
     useEffect(() => {
@@ -122,6 +123,10 @@ function Tables() {
 
     const deleteUserByid = (id) => {
         disptach(deleteUser(id));
+    };
+
+    const removeTask = (id) => {
+        disptach(deleteTask(id));
     };
 
     return (
@@ -188,96 +193,97 @@ function Tables() {
                     >
                         <Table
                             columns={prCols}
-                            rows={[
-                                {
-                                    name: (
-                                        <SuiTypography
-                                            variant="button"
-                                            color="text"
-                                            fontWeight="medium"
-                                        >
-                                            Test Task #1
-                                        </SuiTypography>
-                                    ),
-                                    members: (
-                                        <SuiBox display="flex">
-                                            {renderAuthors([
-                                                { image: team1, name: "Elena Morison" },
-                                                { image: team2, name: "Ryan Milly" },
-                                                { image: team3, name: "Nick Daniel" },
-                                                { image: team4, name: "Peterson" },
-                                            ])}
+                            rows={tasks.map((element) => ({
+                                name: (
+                                    <SuiTypography
+                                        variant="button"
+                                        color="text"
+                                        fontWeight="medium"
+                                    >
+                                        {element.name}
+                                    </SuiTypography>
+                                ),
+                                members: (
+                                    <SuiBox display="flex">
+                                        {renderAuthors([
+                                            { image: team1, name: "Elena Morison" },
+                                            { image: team2, name: "Ryan Milly" },
+                                            { image: team3, name: "Nick Daniel" },
+                                            { image: team4, name: "Peterson" },
+                                        ])}
+                                    </SuiBox>
+                                ),
+                                priority: (
+                                    <SuiTypography
+                                        variant="caption"
+                                        color="text"
+                                        fontWeight="medium"
+                                    >
+                                        {element.priority.designation}
+                                    </SuiTypography>
+                                ),
+                                project: (
+                                    <SuiTypography
+                                        variant="caption"
+                                        color="text"
+                                        fontWeight="medium"
+                                    >
+                                        {element.project.name}
+                                    </SuiTypography>
+                                ),
+                                status: (
+                                    <SuiTypography
+                                        variant="caption"
+                                        color="text"
+                                        fontWeight="medium"
+                                    >
+                                        {element.status.designation}
+                                    </SuiTypography>
+                                ),
+                                completion: (
+                                    <Completion
+                                        value={Math.floor(Math.random() * 100)}
+                                        color="info"
+                                    />
+                                ),
+                                Deadline: (
+                                    <SuiTypography
+                                        variant="caption"
+                                        color="text"
+                                        fontWeight="medium"
+                                    >
+                                        {element.expectedEndDate}
+                                    </SuiTypography>
+                                ),
+                                actions: (
+                                    <SuiTypography
+                                        variant="caption"
+                                        color="text"
+                                        fontWeight="medium"
+                                    >
+                                        <SuiBox display="flex" flexDirection="row" gap="5px">
+                                            <SuiButton
+                                                onClick={() => {
+                                                    setEditTaskSidePanel(true);
+                                                }}
+                                                variant="text"
+                                                size="small"
+                                                color={"text"}
+                                            >
+                                                Edit
+                                            </SuiButton>
+                                            <SuiButton
+                                                onClick={() => removeTask(element.id)}
+                                                variant="text"
+                                                size="small"
+                                                color={"error"}
+                                            >
+                                                Remove
+                                            </SuiButton>
                                         </SuiBox>
-                                    ),
-                                    priority: (
-                                        <SuiTypography
-                                            variant="caption"
-                                            color="text"
-                                            fontWeight="medium"
-                                        >
-                                            HIGH
-                                        </SuiTypography>
-                                    ),
-                                    project: (
-                                        <SuiTypography
-                                            variant="caption"
-                                            color="text"
-                                            fontWeight="medium"
-                                        >
-                                            project #1
-                                        </SuiTypography>
-                                    ),
-                                    status: (
-                                        <SuiTypography
-                                            variant="caption"
-                                            color="text"
-                                            fontWeight="medium"
-                                        >
-                                            working
-                                        </SuiTypography>
-                                    ),
-                                    completion: <Completion value={60} color="info" />,
-                                    Deadline: (
-                                        <SuiTypography
-                                            variant="caption"
-                                            color="text"
-                                            fontWeight="medium"
-                                        >
-                                            18-Jul-2022
-                                        </SuiTypography>
-                                    ),
-                                    actions: (
-                                        <SuiTypography
-                                            variant="caption"
-                                            color="text"
-                                            fontWeight="medium"
-                                        >
-                                            <SuiBox display="flex" flexDirection="row" gap="5px">
-                                                <SuiButton
-                                                    onClick={() => {
-                                                        setEditTaskSidePanel(true);
-                                                    }}
-                                                    variant="text"
-                                                    size="small"
-                                                    color={"text"}
-                                                >
-                                                    Edit
-                                                </SuiButton>
-                                                <SuiButton
-                                                    onClick={() => {
-                                                        
-                                                    }}
-                                                    variant="text"
-                                                    size="small"
-                                                    color={"error"}
-                                                >
-                                                    Remove
-                                                </SuiButton>
-                                            </SuiBox>
-                                        </SuiTypography>
-                                    ),
-                                },
-                            ]}
+                                    </SuiTypography>
+                                ),
+                            }))}
                         />
                     </SuiBox>
                 </Card>

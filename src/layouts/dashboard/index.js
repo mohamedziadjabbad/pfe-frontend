@@ -59,12 +59,13 @@ import AddProject from "examples/SideMenu/AddProject";
 import EditProject from "examples/SideMenu/EditProject";
 
 import React from "react";
-import { getCategories, getRoles, getClients, getTeams, getUsers } from "stores/user";
+import { getCategories, getRoles, getClients, getTeams, getUsers, getProjects } from "stores/user";
+import { deleteProject } from "stores/user";
 
 function Dashboard() {
     const navigation = useNavigate();
     const dispatch = useDispatch();
-    const { isLogged, teams, users, clients } = useSelector((state) => state.user);
+    const { isLogged, teams, users, clients, projects } = useSelector((state) => state.user);
 
     useEffect(() => {
         dispatch(getRoles());
@@ -72,6 +73,7 @@ function Dashboard() {
         dispatch(getClients());
         dispatch(getTeams());
         dispatch(getUsers());
+        dispatch(getProjects());
     }, []);
 
     useEffect(() => {
@@ -79,6 +81,10 @@ function Dashboard() {
             navigation("/authentication/sign-in");
         }
     }, [isLogged]);
+
+    const removeProject = (id) => {
+        dispatch(deleteProject(id));
+    };
 
     const [addProjectSidePanel, setAddProjectSidePanel] = React.useState(false);
     const [editProjectSidePanel, setEditProjectSidePanel] = React.useState(false);
@@ -100,7 +106,7 @@ function Dashboard() {
                         <Grid item xs={12} sm={6} xl={3}>
                             <MiniStatisticsCard
                                 title={{ text: "Projects" }}
-                                count="3"
+                                count={projects?.length}
                                 // percentage={{ color: "success", text: "+3%" }}
                                 icon={{ color: "info", component: "public" }}
                             />
@@ -140,141 +146,54 @@ function Dashboard() {
                         </SuiBox>
                         <SuiBox p={2}>
                             <Grid container spacing={3}>
-                                <Grid item xs={12} md={6} xl={3}>
-                                    <DefaultProjectCard
-                                        title="Test project #1"
-                                        description="A detailed description of the project"
-                                        startDate="13-Jul-2022"
-                                        endDate="15-Jul-2022"
-                                        expectedEndDate="15-Jul-2022"
-                                        authors={[
-                                            { image: team1, name: "Elena Morison" },
-                                            { image: team2, name: "Ryan Milly" },
-                                            { image: team3, name: "Nick Daniel" },
-                                            { image: team4, name: "Peterson" },
-                                        ]}
-                                        client="Random client #1"
-                                        numberOfTasks="10"
-                                        completedTasks="8"
-                                        action={
-                                            <SuiBox
-                                                display="flex"
-                                                justifyContent="space-between"
-                                                alignItems="center"
-                                            >
-                                                <SuiButton
-                                                    to={""}
-                                                    variant="outlined"
-                                                    size="small"
-                                                    color={"info"}
-                                                    onClick={() => {
-                                                        setEditProjectSidePanel(true);
-                                                    }}
+                                {projects?.map((element) => (
+                                    <Grid item xs={12} md={6} xl={3}>
+                                        <DefaultProjectCard
+                                            title={element.name}
+                                            description={element.description}
+                                            startDate={element.startdate}
+                                            endDate={element.enddate}
+                                            expectedEndDate={element.expectedenddate}
+                                            authors={[
+                                                { image: team1, name: "Elena Morison" },
+                                                { image: team2, name: "Ryan Milly" },
+                                                { image: team3, name: "Nick Daniel" },
+                                                { image: team4, name: "Peterson" },
+                                            ]}
+                                            client={element.clients.nom}
+                                            numberOfTasks="10"
+                                            completedTasks="8"
+                                            action={
+                                                <SuiBox
+                                                    display="flex"
+                                                    justifyContent="space-between"
+                                                    alignItems="center"
                                                 >
-                                                    Edit
-                                                </SuiButton>
-                                                <SuiButton
-                                                    to={""}
-                                                    variant="outlined"
-                                                    size="small"
-                                                    color={"error"}
-                                                >
-                                                    Remove
-                                                </SuiButton>
-                                            </SuiBox>
-                                        }
-                                    />
-                                </Grid>
-                                <Grid item xs={12} md={6} xl={3}>
-                                    <DefaultProjectCard
-                                        title="Test project #2"
-                                        description="A detailed description of the project"
-                                        startDate="13-Jul-2022"
-                                        endDate="15-Jul-2022"
-                                        expectedEndDate="15-Jul-2022"
-                                        authors={[
-                                            { image: team1, name: "Elena Morison" },
-                                            { image: team2, name: "Ryan Milly" },
-                                            { image: team3, name: "Nick Daniel" },
-                                            { image: team4, name: "Peterson" },
-                                        ]}
-                                        client="Random client #2"
-                                        numberOfTasks="20"
-                                        completedTasks="20"
-                                        action={
-                                            <SuiBox
-                                                display="flex"
-                                                justifyContent="space-between"
-                                                alignItems="center"
-                                            >
-                                                <SuiButton
-                                                    to={""}
-                                                    variant="outlined"
-                                                    size="small"
-                                                    color={"info"}
-                                                    onClick={() => {
-                                                        setEditProjectSidePanel(true);
-                                                    }}
-                                                >
-                                                    Edit
-                                                </SuiButton>
-                                                <SuiButton
-                                                    to={""}
-                                                    variant="outlined"
-                                                    size="small"
-                                                    color={"error"}
-                                                >
-                                                    Remove
-                                                </SuiButton>
-                                            </SuiBox>
-                                        }
-                                    />
-                                </Grid>
-                                <Grid item xs={12} md={6} xl={3}>
-                                    <DefaultProjectCard
-                                        title="Test project #3"
-                                        description="A detailed description of the project"
-                                        startDate="13-Jul-2022"
-                                        endDate="15-Jul-2022"
-                                        expectedEndDate="15-Jul-2022"
-                                        authors={[
-                                            { image: team1, name: "Elena Morison" },
-                                            { image: team2, name: "Ryan Milly" },
-                                            { image: team3, name: "Nick Daniel" },
-                                            { image: team4, name: "Peterson" },
-                                        ]}
-                                        client="Random client #3"
-                                        numberOfTasks="42"
-                                        completedTasks="8"
-                                        action={
-                                            <SuiBox
-                                                display="flex"
-                                                justifyContent="space-between"
-                                                alignItems="center"
-                                            >
-                                                <SuiButton
-                                                    to={""}
-                                                    variant="outlined"
-                                                    size="small"
-                                                    color={"info"}
-                                                    onClick={() => {
-                                                        setEditProjectSidePanel(true);
-                                                    }}
-                                                >
-                                                    Edit
-                                                </SuiButton>
-                                                <SuiButton
-                                                    to={""}
-                                                    variant="outlined"
-                                                    size="small"
-                                                    color={"error"}
-                                                >
-                                                    Remove
-                                                </SuiButton>
-                                            </SuiBox>
-                                        }
-                                    />
-                                </Grid>
+                                                    <SuiButton
+                                                        to={""}
+                                                        variant="outlined"
+                                                        size="small"
+                                                        color={"info"}
+                                                        onClick={() => {
+                                                            setEditProjectSidePanel(true);
+                                                        }}
+                                                    >
+                                                        Edit
+                                                    </SuiButton>
+                                                    <SuiButton
+                                                        onClick={() => removeProject(element.id)}
+                                                        to={""}
+                                                        variant="outlined"
+                                                        size="small"
+                                                        color={"error"}
+                                                    >
+                                                        Remove
+                                                    </SuiButton>
+                                                </SuiBox>
+                                            }
+                                        />
+                                    </Grid>
+                                ))}
                                 <Grid
                                     item
                                     xs={12}

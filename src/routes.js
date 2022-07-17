@@ -72,7 +72,7 @@ const routes = [
         auth: true,
     },
     {
-        type: "collapse",
+        type: "noCollapse",
         name: "Project",
         key: "project",
         route: "/project",
