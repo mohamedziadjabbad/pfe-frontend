@@ -46,53 +46,6 @@ function OrdersOverview() {
         dispatch(deleteCategorie(id));
     };
 
-//   return (
-//     <Card className="h-100">
-//       <SuiBox pt={3} px={3}>
-//         <SuiBox display="flex" justifyContent="space-between" alignItems="center">
-//             <SuiTypography variant="h6" gutterBottom>
-//                 Categories
-//             </SuiTypography>
-//             <SuiButton
-//                 variant="outlined"
-//                 size="small"
-//                 color={"info"}
-//                 onClick={ ()=>{setAddCategorySidePanel(true)} }
-//                 >
-//                 Add Category
-//             </SuiButton>
-//         </SuiBox>
-//       </SuiBox>
-//       <SuiBox p={2}>
-//         <TimelineItem
-//             title="Category #1"
-//             dateTime={
-//                 <SuiBox display="flex" alignItems="right">
-//                     <SuiButton
-//                         to={""}
-//                         variant="text"
-//                         size="small"
-//                         color={"info"}
-//                         onClick={ ()=>{setAddCategorySidePanel(true)} }
-//                     >
-//                         Edit
-//                     </SuiButton>
-//                     <SuiButton
-//                         to={""}
-//                         variant="text"
-//                         size="small"
-//                         color={"error"}
-//                     >
-//                         Remove
-//                     </SuiButton>
-//                 </SuiBox>
-//             }
-//         />
-//         <TimelineItem
-//             title="Category #2"
-//             dateTime={
-//                 <SuiBox display="flex" alignItems="right">
-
 
     return (
         <Card className="h-100">
@@ -124,7 +77,7 @@ function OrdersOverview() {
                                         size="small"
                                         color={"info"}
                                         onClick={() => {
-                                            setSidePanel(true);
+                                            setEditCategorySidePanel(true);
                                         }}
                                     >
                                         Edit

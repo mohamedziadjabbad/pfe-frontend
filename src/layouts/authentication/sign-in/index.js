@@ -61,7 +61,7 @@ function SignIn() {
             {error && <p style={{ color: "red" }}>{error}</p>}
 
             {userNotFound && (
-                <p style={{ color: "red" }}>We didn't find a user with these credentiels</p>
+                <p style={{ color: "red" }}>We didn't find a user with these credentials</p>
             )}
 
             <SuiBox component="form" role="form">

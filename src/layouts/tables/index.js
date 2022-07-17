@@ -53,25 +53,17 @@ import { useNavigate } from "react-router-dom";
 
 function Tables() {
     const disptach = useDispatch();
-<<<<<<< HEAD
     const [addUserSidePanel, setAddUserSidePanel] = React.useState(false);
     const [editUserSidePanel, setEditUserSidePanel] = React.useState(false);
     const [addTaskSidePanel, setAddTaskSidePanel] = React.useState(false);
     const [editTaskSidePanel, setEditTaskSidePanel] = useState([]);
 
-=======
-    const navigation = useNavigate();
->>>>>>> origin/updating
-    const [userSidePanel, setUserSidePanel] = React.useState(false);
-    const [taskSidePanel, setTaskSidePanel] = React.useState(false);
     const [userData, setUserData] = useState([]);
 
-<<<<<<< HEAD
+    const navigation = useNavigate();
 
-    const { users } = useSelector((state) => state.user);
-=======
+    // const { users } = useSelector((state) => state.user);
     const { users, isLogged } = useSelector((state) => state.user);
->>>>>>> origin/updating
 
     const { columns, rows } = authorsTableData;
     const { columns: prCols, rows: prRows } = projectsTableData;
@@ -102,7 +94,7 @@ function Tables() {
                     <SuiBox display="flex" flexDirection="row" gap="5px">
                         <SuiButton
                             onClick={() => {
-                                editUserSidePanel(true);
+                                setEditUserSidePanel(true);
                             }}
                             variant="text"
                             size="small"
@@ -147,7 +139,7 @@ function Tables() {
                             <SuiTypography variant="h6">Users</SuiTypography>
                             <SuiButton
                                 onClick={() => {
-                                    addUserSidePanel(true);
+                                    setAddUserSidePanel(true);
                                 }}
                                 variant="outlined"
                                 size="small"
@@ -175,7 +167,7 @@ function Tables() {
                         <SuiTypography variant="h6">Tasks</SuiTypography>
                         <SuiButton
                             onClick={() => {
-                                addTaskSidePanel(true);
+                                setAddTaskSidePanel(true);
                             }}
                             variant="outlined"
                             size="small"
@@ -263,7 +255,7 @@ function Tables() {
                                             <SuiBox display="flex" flexDirection="row" gap="5px">
                                                 <SuiButton
                                                     onClick={() => {
-                                                        editTaskSidePanel(true);
+                                                        setEditTaskSidePanel(true);
                                                     }}
                                                     variant="text"
                                                     size="small"
